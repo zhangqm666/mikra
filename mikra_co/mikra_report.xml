@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    <report
+        auto="False"
+        id="account.account_invoices"
+        model="account.invoice"
+        name="mikra.account.invoice"
+        rml="mikra_co/report/account_print_invoice.rml"
+        string="Invoices"
+        attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
+        usage="default"
+        multi="True"/>
+        
+        
+        </data>
+        </openerp>
