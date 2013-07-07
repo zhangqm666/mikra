@@ -34,8 +34,10 @@ class product_template(osv.Model):
         res={}
         for prod in self.browse(cr, uid, ids):
             if prod.nabavna_eur:
-                res[prod.id] = {'nabavna_75': prod.nabavna_eur * 7.5,
-                                'nabavna_80': prod.nabavna_eur * 8}
+                res[prod.id] = {'rnabavna_75': prod.nabavna_eur * 7.5,
+                                'rnabavna_80': prod.nabavna_eur * 8,
+                                'rnabavna_tec':False
+                                }
         return res
     
     def digitron (self, cr, uid, ids, p_base=None, fak1=None, fak2=None, context=None):
@@ -47,9 +49,9 @@ class product_template(osv.Model):
                 base = p_base
             else :
                 base = p.p_base and p.p_base or False
-            base_p = ( base=='n75' and p.nabavna_75 or
-                       base=='n80' and p.nabavna_80 or
-                       base=='hrk' and p.nabavna_kn or False  )
+            base_p = ( base=='n75' and p.rnabavna_75 or
+                       base=='n80' and p.rnabavna_80 or
+                       base=='hrk' and p.rnabavna_tec or False  )
             f1 = fak1 or p.fak1 
             f2 = fak2 or p.fak2
             if f1!=0 and f2!=0 and base_p:
@@ -62,11 +64,13 @@ class product_template(osv.Model):
     _columns = {
                 'nabavna_kn':fields.float('Nabavna KN',help="nabavna cijena u kunama"),
                 'nabavna_eur':fields.float('Nabavna EUR',help="nabavna cijena u eurima"),
-                'nabavna_75':fields.function(_izracunaj, string='Nabavna 7.5', type="float", multi="tecaj",help="nabavna cijena (eur) po tečaju 7,5", store = True),
-                'nabavna_80':fields.function(_izracunaj, string='Nabavna 8.0', type="float", multi="tecaj", help="nabavna cijena (eur) po tečaju 8.0", store = True),
+                'nabavna_chf':fields.float('Nabavna CHF', help="nabavna cijena u švicarcima"),
+                'rnabavna_75':fields.function(_izracunaj, string='Nabavna EUR 7.5', type="float", multi="tecaj",help="nabavna cijena (eur) po tečaju 7,5", store = True),
+                'rnabavna_80':fields.function(_izracunaj, string='Nabavna EUR 8.0', type="float", multi="tecaj", help="nabavna cijena (eur) po tečaju 8.0", store = True),
+                'rnabavna_tec':fields.function(_izracunaj, string='Nabavna TEČAJ', type="float", multi="tecaj", help="nabavna cijena (eur) po trenutnom tečaju ", store = True),
                 'fak1':fields.float('Faktor1'),
                 'fak2':fields.float('Faktor2'),
-                'p_base':fields.selection([('n75','Nabavna  7.5'),('n80','Nabavna 8.0'),('hrk','Nabavna tecaj')],'Osnovica',help="Odabir osnove za izračun javne cijene"),
+                'p_base':fields.selection([('n75','Nabavna  7.5'),('n80','Nabavna 8.0'),('tec','Nabavna tecaj')],'Osnovica',help="Odabir osnove za izračun javne cijene"),
                 'prodajna':fields.float('Prodajna', help="Pregled prodajne cijene prije uvrštenja")
                 }
     

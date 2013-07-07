@@ -11,12 +11,14 @@
 			<field name="arch" type="xml">
 				<field name="standard_price" position="after">
 					<group>
+					   <field name="nabavna_chf" />
 						<field name="nabavna_eur" />
 						<field name="nabavna_kn" />
 					</group>
 					<group>
-						<field name="nabavna_75" readonly="1" />
-						<field name="nabavna_80" readonly="1" />
+						<field name="rnabavna_75" readonly="1" />
+						<field name="rnabavna_80" readonly="1" />
+						<field name="rnabavna_tec" readonly="1" />
 					</group>
 
 					<group string="Izračun prodajne cijene iz " colspan="6" col="6">
