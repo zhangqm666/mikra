@@ -51,7 +51,8 @@ Summary:
                 ],
     
     'update_xml': [
-                   'product_view.xml'
+                   'product_view.xml',
+                   'mikra_report.xml'
                    ],
     "active": False,
     "installable": True,

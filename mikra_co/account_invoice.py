@@ -34,6 +34,10 @@ import psycopg2
 class account_invoice(osv.Model):
     _inherit = "account.invoice"
     
+    _columns = {
+                'narudzba':fields.char('Narudžba br', size=64)
+                }
+    
     def invoice_print(self, cr, uid, ids, context=None):
         '''
         This function prints the invoice and mark it as sent, so that we can see more easily the next step of the workflow
@@ -48,6 +52,4 @@ class account_invoice(osv.Model):
         return {
             'type': 'ir.actions.report.xml',
             'report_name': 'mikra.account.invoice',
-            'datas': datas,
-            'nodestroy' : True
-        }
+            'datas': datas, 'nodestroy' : True }

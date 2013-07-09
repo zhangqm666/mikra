@@ -41,14 +41,14 @@
             <field name="priority" eval="105" />
             <field name="arch" type="xml">
                 <tree string="Products" editable="top" delete="false" create="false" >
+                    <field name="name" readonly="1"/>
                     <field name="nabavna_eur" />
                     <field name="nabavna_kn" />
-                    <field name="name" readonly="1"/>
                     <field name="categ_id" invisible="1"/>
                     <field name="type" invisible="1"/>
-                    <field name="list_price" invisible="1"/>
+                    <field name="list_price" />
                     <field name="p_base"/>
-                    <field name="fak1" />
+                    <field name="fak1" avg="avg_fak1" />
                     <field name="fak2" />
                     <field name="prodajna"/>
                 </tree>
@@ -62,9 +62,9 @@
              <form string="Products" >
                     <field name="name"/>
                     <field name="description_sale"/>
-                    <field name="categ_id" invisible="1"/>
+                    <field name="categ_id" readonly="1"/>
                     <field name="type" invisible="1"/>
-                    <field name="list_price" invisible="1"/>
+                    <field name="list_price" />
                     <field name="nabavna_eur" />
                     <field name="nabavna_kn" />
                     <field name="p_base"/>
@@ -74,13 +74,34 @@
                 </form>
             </field>
         </record>
+        
+        <record id="mikra_product_filter" model="ir.ui.view">
+            <field name="name">mikra_product_filter</field>
+            <field name="model">product.template</field>
+            <field name="arch" type="xml">
+                <search string="Pretraga proizvoda">
+                    <field name="name" filter_domain="['|',('name','ilike',self),('category_id','ilike',self)]" />
+                    <filter name="state_notfin" string="Not finished" domain="[('state','!=','finish')]" />
+                    
+                    <group expand="0" string="Group By...">
+                        <separator />
+                        <filter string="Kategorija" context="{'group_by':'categ_id'}" />
+                       
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        
          <record id="product_normal_action_mikra" model="ir.actions.act_window">
             <field name="name">Formiranje cijena</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">product.template</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="product_template_mikra_price_tree_view"/>
+            <field name="context">{}</field>
             <!-- 
+            <field name="context">{"group_by":'categ_id'}</field>
             <field name="search_view_id" ref="product_search_form_view"/>
              -->
          </record>

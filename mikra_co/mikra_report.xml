@@ -11,7 +11,14 @@
         attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
         usage="default"
         multi="True"/>
-        
-        
-        </data>
-        </openerp>
+    <report 
+        auto="False" 
+        id="sale.report_sale_order" 
+        model="sale.order" 
+        name="mikra.sale.order"
+        rml="mikra_co/report/sale_order.rml" 
+        string="Quotation / Order"
+        usage="default"
+        multi="True"/>
+    </data>
+</openerp>
