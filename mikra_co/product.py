@@ -44,7 +44,6 @@ class product_template(osv.Model):
         if isinstance(ids, int): ids = [ids]
         res={}
         for p in self.pool.get('product.template').browse(cr, uid, ids):
-            
             if p_base :
                 base = p_base
             else :
@@ -59,7 +58,8 @@ class product_template(osv.Model):
                 
         return res
     
-    
+    def onchange_digitron(self, cr, uid, ids, p_base, fak1, fak2):
+        return {'value':self.digitron(cr, uid, ids[0], p_base, fak1, fak2)[ids[0]]}
             
     _columns = {
                 'nabavna_kn':fields.float('Nabavna KN',help="nabavna cijena u kunama"),
@@ -71,7 +71,7 @@ class product_template(osv.Model):
                 'fak1':fields.float('Faktor1'),
                 'fak2':fields.float('Faktor2'),
                 'p_base':fields.selection([('n75','Nabavna  7.5'),('n80','Nabavna 8.0'),('tec','Nabavna tecaj')],'Osnovica',help="Odabir osnove za izračun javne cijene"),
-                'prodajna':fields.float('Prodajna', help="Pregled prodajne cijene prije uvrštenja")
+                'prodajna':fields.float('Izr. Prod.', help="Pregled prodajne cijene prije uvrštenja")
                 }
     
     _defaults = {

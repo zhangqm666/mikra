@@ -47,9 +47,9 @@
                     <field name="categ_id" invisible="1"/>
                     <field name="type" invisible="1"/>
                     <field name="list_price" />
-                    <field name="p_base"/>
-                    <field name="fak1" avg="avg_fak1" />
-                    <field name="fak2" />
+                    <field name="p_base" on_change="onchange_digitron(p_base, fak1, fak2)"/>
+                    <field name="fak1" on_change="onchange_digitron(p_base, fak1, fak2)" />
+                    <field name="fak2" on_change="onchange_digitron(p_base, fak1, fak2)" />
                     <field name="prodajna"/>
                 </tree>
             </field>
