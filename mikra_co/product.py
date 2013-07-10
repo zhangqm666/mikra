@@ -62,6 +62,7 @@ class product_template(osv.Model):
         return {'value':self.digitron(cr, uid, ids[0], p_base, fak1, fak2)[ids[0]]}
             
     _columns = {
+                'name': fields.char('Name', size=256, required=True, translate=True, select=True),
                 'nabavna_kn':fields.float('Nabavna KN',help="nabavna cijena u kunama"),
                 'nabavna_eur':fields.float('Nabavna EUR',help="nabavna cijena u eurima"),
                 'nabavna_chf':fields.float('Nabavna CHF', help="nabavna cijena u švicarcima"),
@@ -86,6 +87,8 @@ class product_template(osv.Model):
 class product_product(osv.Model):
     _inherit = 'product.product'
     
+    
+    
     def onchange_digitron(self, cr, uid, ids, p_base, fak1, fak2):
         prod = self.browse(cr, uid, ids[0]).product_tmpl_id.id
         t = self.pool.get('product.template')
@@ -108,7 +111,9 @@ class product_product(osv.Model):
             
         return True
     
-   
+    _columns = {
+                'name_template': fields.related('product_tmpl_id', 'name', string="Template Name", type='char', size=256, store=True, select=True),
+                }
                 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
