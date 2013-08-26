@@ -92,6 +92,7 @@
     <paraStyle name="terp_header" fontSize="15.0" leading="19" alignment="LEFT" spaceBefore="12.0" spaceAfter="6.0"/>
     <paraStyle name="terp_default_8" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="terp_default_Bold_9" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="terp_default_Bold_10" fontSize="10.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="terp_default_9" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="terp_tblheader_General_Centre" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="terp_default_Centre_8" fontSize="8.0" leading="10" alignment="CENTER" spaceBefore="0.0" spaceAfter="0.0"/>
@@ -140,28 +141,28 @@
     <blockTable colWidths="265.0,51.0,225.0" style="Table1">
       <tr>
         <td>
-        
-        <para style="terp_header">[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]] [[ (o.partner_id and o.partner_id.name) or '' ]]</para>
+        <para style="terp_default_Bold_10"><b>[[ (o.partner_id and o.partner_id.title and o.partner_id.title.name) or '' ]][[ (o.partner_id and o.partner_id.name) or '' ]]</b></para>
         <para style="terp_default_8">
            <font color="white"> </font>
         </para>
          <para style="terp_default_9">[[ o.partner_id and display_address(o.partner_id) ]] </para>
         <!--  <para style="terp_default_9">[[ (o.partner_shipping_id and o.partner_id.title and o.partner_shipping_id.title.name) or '' ]] [[ (o.partner_shipping_id and o.partner_shipping_id.name) or '' ]]</para> -->
           <para style="terp_default_9">OIB/VAT : [[ (o.partner_id.vat) or removeParentNode('para') ]]</para>
-          <para style="terp_default_9">[[ o.partner_shipping_id and display_address(o.partner_shipping_id) ]]</para>
+         <!-- <para style="terp_default_9">[[ o.partner_shipping_id and display_address(o.partner_shipping_id) ]]</para> -->
           <para style="terp_default_9">Tel : [[ (o.partner_id.phone) or removeParentNode('para') ]]</para>
           <para style="terp_default_9">Fax : [[ (o.partner_id.fax) or removeParentNode('para') ]]</para>
           <para style="terp_default_9">Mail : [[ (o.partner_id.email) or removeParentNode('para') ]]</para>
+         <!--
           <para style="terp_default_9">OIB/VAT : [[ (o.partner_id.vat) or removeParentNode('para') ]]</para>
-        
+        -->
         </td>
         <td>
         
         </td>
         <td>
          
-    <para style="terp_header"><b>[[ o.state not in ['draft','sent'] and removeParentNode('para') ]]Ponuda broj : [[ o.name ]]</b></para>
-    <para style="terp_header"><b>[[ o.state in ['draft','sent'] and removeParentNode('para') ]]MIKRA TEST Order N° [[ o.name ]]</b></para>
+    <para style="terp_default_Bold_10"><b>[[ o.state not in ['draft','sent'] and removeParentNode('para') ]]Ponuda broj : [[ o.name ]]</b></para>
+    <!--   <para style="terp_header"><b>[[ o.state in ['draft','sent'] and removeParentNode('para') ]]MIKRA TEST Order N° [[ o.name ]]</b></para> -->
     <para style="terp_default_8">
       <font color="white"> </font>
     </para>
@@ -179,14 +180,17 @@
     <para style="terp_default_8">
       <font color="white"> </font>
     </para>
-    <blockTable colWidths="181.0,70.0,80.0,70.0,50.0,85.0" repeatRows="1" style="Table4">
+    <!--   <blockTable colWidths="181.0,70.0,80.0,70.0,50.0,85.0" repeatRows="1" style="Table4">  -->
+    <blockTable colWidths="251.0,80.0,70.0,50.0,85.0" repeatRows="1" style="Table4">
       <tr>
         <td>
           <para style="terp_tblheader_Details"><b>Opis</b></para>
         </td>
+        <!--
         <td>
           <para style="terp_tblheader_Details_Centre"><b>Porez</b></para>
         </td>
+        -->
         <td>
           <para style="terp_tblheader_Details_Right"><b>kol.</b></para>
         </td>
@@ -197,22 +201,25 @@
           <para style="terp_tblheader_Details_Centre"><b>[[not show_discount(user.id) and removeParentNode('para') ]]Rabat(%)</b></para>
         </td>
         <td>
-          <para style="terp_tblheader_Details_Right"><b>Price</b></para>
+          <para style="terp_tblheader_Details_Right"><b>Cijena</b></para>
         </td>
       </tr>
     </blockTable>
     <section>
       <para style="terp_default_1">[[repeatIn(o.order_line,'line')]]</para>
-      <blockTable colWidths="180.0,70.0,80.0,70.0,50.0,85.0" style="Table5">
+      <!-- <blockTable colWidths="180.0,70.0,80.0,70.0,50.0,85.0" style="Table5"> -->
+      <blockTable colWidths="250.0,80.0,70.0,50.0,85.0" style="Table5">
         <tr>
           <td>
             <para style="terp_default_9">[[ format(line.name) ]] </para>
           </td>
+          <!--
           <td>
             <para style="terp_default_Centre_9">[[ ', '.join(map(lambda x: x.name, line.tax_id)) ]]</para>
           </td>
+          -->
           <td>
-            <para style="terp_default_Right_9">[[ formatLang(line.product_uos and line.product_uos_qty or line.product_uom_qty) ]] [[ line.product_uos and line.product_uos.name or line.product_uom.name ]]</para>
+            <para style="terp_default_Right_9">[[ formatLang(line.product_uos and line.product_uos_qty or line.product_uom_qty) ]]</para>
           </td>
           <td>
             <para style="terp_default_Right_9">[[ formatLang(line.price_unit , digits=get_digits(dp='Product Price'))]]</para>
@@ -226,7 +233,7 @@
         </tr>
       </blockTable>
     </section>
-    <blockTable colWidths="381.0,60.0,93.0" style="Table6">
+    <blockTable colWidths="350.0,91.0,93.0" style="Table6">
       <tr>
         <td>
           <para style="terp_default_9">
@@ -234,7 +241,7 @@
           </para>
         </td>
         <td>
-          <para style="terp_default_9">Netto :</para>
+          <para style="terp_default_9">Vrijednost robe :</para>
         </td>
         <td>
           <para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
@@ -247,7 +254,7 @@
           </para>
         </td>
         <td>
-          <para style="terp_default_9">Porez :</para>
+          <para style="terp_default_9">Iznos poreza :</para>
         </td>
         <td>
           <para style="terp_default_Right_9">[[ formatLang(o.amount_tax, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
@@ -260,7 +267,7 @@
           </para>
         </td>
         <td>
-          <para style="terp_default_Bold_9"><b>Total :</b></para>
+          <para style="terp_default_Bold_9"><b>Ukupni iznos :</b></para>
         </td>
         <td>
           <para style="terp_default_Right_9_Bold"><b>[[ formatLang(o.amount_total, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</b></para>
