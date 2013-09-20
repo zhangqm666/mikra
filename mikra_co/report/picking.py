@@ -24,7 +24,30 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+import time
+from openerp.report import report_sxw
+from openerp.osv import osv
+from openerp import pooler
 
-import account_print_invoice
-import sale_order
-import shipping
+from netsvc import Service
+#del Service._services['report.account.invoice']
+
+class picking(report_sxw.rml_parse):
+    def __init__(self, cr, uid, name, context):
+        super(picking, self).__init__(cr, uid, name, context=context)
+        self.localcontext.update({
+            'time': time,
+            'get_product_desc':self.get_product_desc
+        })
+    def get_product_desc(self,move_line):
+        desc = move_line.product_id.name
+        if move_line.product_id.default_code:
+            desc = '[' + move_line.product_id.default_code + ']' + ' ' + desc
+        return desc
+
+report_sxw.report_sxw(
+    'report.mikra.picking',
+    'stock.picking',
+    'addons/mikra_co/report/picking.rml',
+    parser=picking
+)

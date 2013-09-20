@@ -31,10 +31,13 @@
       <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,-1" stop="1,-1"/>
       <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="2,-1" stop="2,-1"/>
       <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="3,-1" stop="3,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="4,-1" stop="4,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="5,-1" stop="5,-1"/>
     </blockTableStyle>
     <blockTableStyle id="Table10">
       <blockAlignment value="LEFT"/>
       <blockValign value="TOP"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="0,0" stop="0,0"/>
       <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
       <lineStyle kind="LINEABOVE" colorName="#000000" start="2,0" stop="2,0"/>
       <lineStyle kind="LINEABOVE" colorName="#000000" start="1,2" stop="1,2"/>
@@ -202,7 +205,8 @@
             <para style="terp_default_Centre_9">[[ ', '.join([ lt.name or '' for lt in l.invoice_line_tax_id ]) ]]</para>
           </td>
           <td>
-            <para style="terp_default_Right_9">[[ formatLang(l.quantity)]] [[ (l.uos_id and l.uos_id.name) or '' ]]</para>
+            <para style="terp_default_Right_9">[[ formatLang(l.quantity)]]</para>
+            <!-- <para style="terp_default_Right_9">[[ formatLang(l.quantity)]] [[ (l.uos_id and l.uos_id.name) or '' ]]</para> -->
           </td>
           <td>
             <para style="terp_default_Right_9">[[ formatLang(l.price_unit) ]]</para>
@@ -232,7 +236,7 @@
         </tr>
       </blockTable>
     </section>
-    <blockTable colWidths="367.0,58.0,105.0" style="Table10">
+    <blockTable colWidths="350.0,91.0,93.0" style="Table10">
       <tr>
         <td>
           <para style="terp_default_8">
@@ -240,12 +244,37 @@
           </para>
         </td>
         <td>
-          <para style="terp_default_9">Netto:</para>
+          <para style="terp_default_9">Vrijednost robe :</para>
         </td>
         <td>
           <para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed, digits=get_digits(dp='Account')) ]] [[ o.currency_id.symbol ]]</para>
         </td>
       </tr>
+      
+      <!-- additional discount addition -->
+      <tr>
+        <td>
+          <para style="terp_default_9"> <font color="white"> </font> </para>
+        </td>
+        <td>
+          <para style="terp_default_9">[[ o.add_disc or removeParentNode('tr') ]]% popust :</para>
+        </td>
+        <td>
+          <para style="terp_default_Right_9">[[ formatLang(o.add_disc_amt, digits=get_digits(dp='Account')) ]] [[ o.currency_id.symbol ]]</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para style="terp_default_9"> <font color="white"> </font> </para>
+        </td>
+        <td>
+          <para style="terp_default_9">Vrijednost netto :</para>
+        </td>
+        <td>
+          <para style="terp_default_Right_9">[[ o.add_disc and formatLang(o.amount_net, digits=get_digits(dp='Account')) or removeParentNode('tr')]] [[ o.currency_id.symbol ]] </para> 
+        </td>
+      </tr>
+      
       <tr>
         <td>
           <para style="terp_default_8">
@@ -278,20 +307,10 @@
     </para>
     <blockTable colWidths="205.0,71.0,71.0,183.0" style="Table9">
       <tr>
-        <td>
-          <para style="terp_tblheader_Details">Porez [[ o.tax_line==[] and removeParentNode('blockTable') ]]</para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right">Osnovica </para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right">Iznos </para>
-        </td>
-        <td>
-          <para style="terp_default_8">
-            <font color="white"> </font>
-          </para>
-        </td>
+        <td><para style="terp_tblheader_Details">Porez [[ o.tax_line==[] and removeParentNode('blockTable') ]]</para>      </td>
+        <td><para style="terp_tblheader_Details_Right">Osnovica </para> </td>
+        <td><para style="terp_tblheader_Details_Right">Iznos </para></td>
+        <td><para style="terp_default_8"> <font color="white"> </font> </para></td>
       </tr>
     </blockTable>
     <section>
@@ -341,6 +360,6 @@
     </para>
     <para style="terp_default_9"> Navedeni iznos, sa pozivom na broj : [[ (o.nac_plac in ('T','O') and o.partner_bank_id and o.reference) or removeParentNode('para') ]]</para>
     <para style="terp_default_9"> molimo uplatiti na račun : [[ (o.nac_plac in ('T','O') and o.partner_bank_id and o.partner_bank_id.acc_number) or removeParentNode('para') ]] </para>
-    <para style="terp_default_9"> poslovna banka : [[ (o.nac_plac in ('T','O') and o.partner_bank_id and o.partner_bank_id.name) or removeParentNode('para') ]] - [[ (o.partner_bank_id and o.partner_bank_id.bank_bic) ]]</para>
+    <para style="terp_default_9"> poslovna banka : [[ (o.nac_plac in ('T','O') and o.partner_bank_id and o.partner_bank_id.bank_name) or removeParentNode('para') ]] - [[ (o.partner_bank_id and o.partner_bank_id.bank_bic) ]]</para>
   </story>
 </document>

@@ -1,15 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Module: mikra_co
-#    Author: Davor Bojkić
-#    mail:   bole@dajmi5.com
-#    Copyright (C) 2012- Daj Mi 5, 
-#                  http://www.dajmi5.com
-#    Contributions: 
-#                   
-#                    
+#    Copyright (C) 2004-2010 Tiny SPRL (<http://tiny.be>).
+#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
 #    published by the Free Software Foundation, either version 3 of the
@@ -25,6 +19,21 @@
 #
 ##############################################################################
 
-import account_print_invoice
-import sale_order
-import shipping
+import time
+
+from openerp.report import report_sxw
+
+class shipping(report_sxw.rml_parse):
+    def __init__(self, cr, uid, name, context):
+        super(shipping, self).__init__(cr, uid, name, context=context)
+        self.localcontext.update({
+            'time': time,
+        })
+
+report_sxw.report_sxw(
+       'report.mikra.sale.shipping',
+       'stock.picking',
+       'mikra_co/report/shipping.rml',
+       parser=shipping)
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

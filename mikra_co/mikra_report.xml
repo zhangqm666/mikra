@@ -20,5 +20,22 @@
         string="Quotation / Order"
         usage="default"
         multi="True"/>
+     <report 
+        auto="False" 
+        id="stock.picking" 
+        model="stock.picking.out" 
+        name="mikra.stock.picking.out"
+        rml="mikra_co/report/picking.rml" 
+        string="Delivery / Order"
+        usage="default"
+        multi="True"/>
+        
+    <report
+            id="delivery.report_shipping"
+            model="stock.picking"
+            name="mikra.sale.shipping"
+            multi="True"
+            rml="mikra_co/report/shipping.rml"
+            string="Mikra Delivery order"/>
     </data>
 </openerp>
