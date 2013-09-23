@@ -155,7 +155,8 @@
           <para style="terp_tblheader_Details">Opis stavke</para>
         </td>
         <td>
-          <para style="terp_tblheader_Details_Centre">Lot</para>
+          <para style="terp_tblheader_Details_Centre"></para>
+          <!-- <para style="terp_tblheader_Details_Centre">Lot</para> -->
         </td>
         <td>
           <para style="terp_tblheader_Details_Right">Količina</para>
