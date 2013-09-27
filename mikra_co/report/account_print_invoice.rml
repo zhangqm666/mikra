@@ -145,7 +145,7 @@
           <para style="P1"> <font color="white"> </font> </para>
           
           <para style="terp_default_8">Datum izdavanja : [[ formatLang(o.vrijeme_izdavanja,date_time=True) ]]</para>
-          <para style="terp_default_8">Datum isporuke : [[ formatLang(o.date_deliveryhttp://213.186.1.56:8069/?db=MIKRA&debug=#, date=True) or removeParentNode('para') ]]</para>
+          <para style="terp_default_8">Datum isporuke : [[ formatLang(o.date_delivery, date=True) or removeParentNode('para') ]]</para>
           <para style="terp_default_8">Datum dospijeća : [[ formatLang(o.date_due, date=True) or removeParentNode('para') ]]</para>
           
           
