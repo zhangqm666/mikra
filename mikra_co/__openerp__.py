@@ -48,6 +48,7 @@ Summary:
 
     'depends': [
                 'l10n_hr_fiskal',
+                'purchase'
                 ],
     
     'update_xml': [

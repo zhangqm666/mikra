@@ -344,7 +344,9 @@
     <para style="terp_default_8">
       <font color="white"> </font>
     </para>
+    <!--
     <para style="terp_default_9">[[ (o.payment_term and o.payment_term.note and format(o.payment_term and o.payment_term.note)) or removeParentNode('para') ]]</para>
+    -->
     <para style="terp_default_9">
       <font color="white"> </font>
     </para>

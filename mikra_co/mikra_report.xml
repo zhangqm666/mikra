@@ -37,5 +37,12 @@
             multi="True"
             rml="mikra_co/report/shipping.rml"
             string="Mikra Delivery order"/>
+    <report
+            id="purchase.request_quotation"
+            model="purchase.order"
+            name="mikra.request.quotation"
+            multi="True"
+            rml="mikra_co/report/request_quotation.rml"
+            string="Mikra Narudžbenica"/>
     </data>
 </openerp>
