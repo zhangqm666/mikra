@@ -137,7 +137,7 @@
           <para style="terp_header">Otpremnica : [[ o.name ]]</para>
           <para style="terp_default_9">Vezni dokument : [[ o.sale_id and o.sale_id.name or '' ]]</para>
           <para style="terp_default_9">Datum narudžbe : [[ formatLang(o.date,date = True) ]]</para>
-          <para style="terp_default_9">Datum isporuke : [[ formatLang(o.min_date,date = True) ]]</para>
+          <para style="terp_default_9">Datum isporuke : [[ formatLang(o.date_done,date = True) ]]</para>
           <para style="terp_default_9">Prevoznik : [[ o.carrier_id and o.carrier_id.name or '' ]]</para>
           <para style="terp_default_9">Težina : [[ formatLang(o.weight) ]]</para>
         </td>
