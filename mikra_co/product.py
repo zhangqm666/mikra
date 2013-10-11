@@ -38,6 +38,8 @@ class product_template(osv.Model):
                                 'rnabavna_80': prod.nabavna_eur * 8,
                                 'rnabavna_tec':False
                                 }
+            elif prod.nabavna_kn:
+                res[prod.id] = {}        #TODO DODATI U IZRAČUN!
         return res
     
     def digitron (self, cr, uid, ids, p_base=None, fak1=None, fak2=None, context=None):
@@ -50,7 +52,8 @@ class product_template(osv.Model):
                 base = p.p_base and p.p_base or False
             base_p = ( base=='n75' and p.rnabavna_75 or
                        base=='n80' and p.rnabavna_80 or
-                       base=='hrk' and p.rnabavna_tec or False  )
+                       base=='hrk' and p.rnabavna_tec or 
+                       base=='dom' and p.nabavna_kn or False  )
             f1 = fak1 or p.fak1 
             f2 = fak2 or p.fak2
             if f1!=0 and f2!=0 and base_p:
@@ -71,7 +74,7 @@ class product_template(osv.Model):
                 'rnabavna_tec':fields.function(_izracunaj, string='Nabavna TEČAJ', type="float", multi="tecaj", help="nabavna cijena (eur) po trenutnom tečaju ", store = True),
                 'fak1':fields.float('Faktor1'),
                 'fak2':fields.float('Faktor2'),
-                'p_base':fields.selection([('n75','Nabavna  7.5'),('n80','Nabavna 8.0'),('tec','Nabavna tecaj')],'Osnovica',help="Odabir osnove za izračun javne cijene"),
+                'p_base':fields.selection([('n75','Nabavna  7.5'),('n80','Nabavna 8.0'),('tec','Nabavna tecaj'),('dom','Nabavna KN')],'Osnovica',help="Odabir osnove za izračun javne cijene"),
                 'prodajna':fields.float('Izr. Prod.', help="Pregled prodajne cijene prije uvrštenja")
                 }
     
@@ -90,6 +93,7 @@ class product_product(osv.Model):
     
     
     def onchange_digitron(self, cr, uid, ids, p_base, fak1, fak2):
+        if ids==[] : return False
         prod = self.browse(cr, uid, ids[0]).product_tmpl_id.id
         t = self.pool.get('product.template')
         return {'value':t.digitron(cr, uid, prod, p_base, fak1, fak2)[ids[0]]}

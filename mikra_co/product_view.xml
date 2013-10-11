@@ -16,9 +16,9 @@
 						<field name="nabavna_kn" />
 					</group>
 					<group>
-						<field name="rnabavna_75" readonly="1" />
-						<field name="rnabavna_80" readonly="1" />
-						<field name="rnabavna_tec" readonly="1" />
+						<field name="rnabavna_75" readonly="1" attrs="{'invisible':[('nabavna_eur','=',0)]}"/>
+						<field name="rnabavna_80" readonly="1" attrs="{'invisible':[('nabavna_eur','=',0)]}"/>
+						<field name="rnabavna_tec" readonly="1" attrs="{'invisible':[('nabavna_eur','=',0)]}"/>
 					</group>
 
 					<group string="Izračun prodajne cijene iz " colspan="6" col="6">
