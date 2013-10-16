@@ -8,7 +8,7 @@
         name="mikra.account.invoice"
         rml="mikra_co/report/account_print_invoice.rml"
         string="Invoices"
-        attachment="(object.state in ('open','paid')) and ('INV'+(object.number or '').replace('/','')+'.pdf')"
+        attachment="(object.state in ('open','paid')) and ('RACUN_'+(object.number or '').replace('/','')+'.pdf')"
         usage="default"
         multi="True"/>
     <report 
@@ -17,7 +17,9 @@
         model="sale.order" 
         name="mikra.sale.order"
         rml="mikra_co/report/sale_order.rml" 
-        string="Quotation / Order"
+        string="Quotation"
+        attachment="('PONUDA_'+(object.name or '').replace('/','')+'_'+(object.partner_id.name).replace('/','')+'.pdf')"
+        attachment_use="True"
         usage="default"
         multi="True"/>
      <report 
@@ -27,6 +29,8 @@
         name="mikra.stock.picking.out"
         rml="mikra_co/report/picking.rml" 
         string="Delivery / Order"
+        attachment="('OTPREMNICA_'+(object.name or '').replace('/','')+'_'+(object.partner_id.name).replace('/','')+'.pdf')"
+        attachment_use="True"
         usage="default"
         multi="True"/>
         
@@ -43,6 +47,9 @@
             name="mikra.request.quotation"
             multi="True"
             rml="mikra_co/report/request_quotation.rml"
-            string="Mikra Narudžbenica"/>
+            string="Narudžbenica"
+            attachment="('NARUDZBENICA_'+(object.name or '').replace('/','')+'_'+(object.partner_id.name).replace('/','')+'.pdf')"
+            />
+            
     </data>
 </openerp>

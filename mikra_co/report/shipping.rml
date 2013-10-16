@@ -132,6 +132,8 @@
           <!-- <para style="terp_default_Bold_9">Otpremljeno za: </para> -->
           <para style="terp_header">[[ o.sale_id and o.sale_id.partner_invoice_id and o.sale_id.partner_invoice_id.name or '']]</para>
           <para style="terp_default_9">[[ o.sale_id and o.sale_id.partner_invoice_id and display_address(o.sale_id.partner_invoice_id) ]]</para>
+          <para style="terp_default_8">  <font color="white"> </font>  </para>
+          <para style="terp_default_9">Narudžba : [[ o.sale_id and o.sale_id.client_order_ref or removeParentNode('para')]]</para>
         </td>
         <td>
           <para style="terp_header">Otpremnica : [[ o.name ]]</para>

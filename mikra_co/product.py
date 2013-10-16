@@ -27,24 +27,36 @@
 
 from osv import fields, osv
 
+def get_tecaj_kn(self, cr, uid, context=None):
+    tecajna=self.pool.get('res.currency')
+    kn = tecajna.search(cr, uid, [('name','=','HRK')])
+    return tecajna.browse(cr, uid, kn[0]).rate
+
 class product_template(osv.Model):
     _inherit = "product.template"
     
     def _izracunaj(self, cr, uid, ids, field_name, field_values, context=None):
         res={}
+        kn_tec = get_tecaj_kn(self, cr, uid)
         for prod in self.browse(cr, uid, ids):
             if prod.nabavna_eur:
                 res[prod.id] = {'rnabavna_75': prod.nabavna_eur * 7.5,
                                 'rnabavna_80': prod.nabavna_eur * 8,
-                                'rnabavna_tec':False
+                                'rnabavna_tec':prod.nabavna_eur * kn_tec,
+                                'standard_price':prod.nabavna_eur * kn_tec
                                 }
             elif prod.nabavna_kn:
-                res[prod.id] = {}        #TODO DODATI U IZRAČUN!
+                res[prod.id] = {
+                                'rnabavna_tec':prod.nabavna_kn,
+                                'standard_price':prod.nabavna_kn
+                                }
         return res
     
     def digitron (self, cr, uid, ids, p_base=None, fak1=None, fak2=None, context=None):
         if isinstance(ids, int): ids = [ids]
         res={}
+        pids , vals = [], []
+        tecaj = get_tecaj_kn(self, cr, uid, ids)
         for p in self.pool.get('product.template').browse(cr, uid, ids):
             if p_base :
                 base = p_base
@@ -58,8 +70,18 @@ class product_template(osv.Model):
             f2 = fak2 or p.fak2
             if f1!=0 and f2!=0 and base_p:
                 res[p.id]={'prodajna':base_p*f1*f2}
-                
-        return res
+            
+            if p.nabavna_eur and p.nabavna_eur != 0.0 :
+                nab = p.nabavna_eur * tecaj
+                pids.append(p.id)
+                vals.append({'standard_price': nab})
+                res[p.id].update({'standard_price': nab})
+            elif p.nabavna_kn and p.nabavna_kn != 0.0 :
+                pids.append(p.id)
+                vals.append({p.id:{'standard_price':p.nabavna_kn}})
+                res[p.id].update({'standard_price': p.nabavna_kn})
+            
+        return res, pids, vals
     
     def onchange_digitron(self, cr, uid, ids, p_base, fak1, fak2):
         return {'value':self.digitron(cr, uid, ids[0], p_base, fak1, fak2)[ids[0]]}
@@ -75,13 +97,15 @@ class product_template(osv.Model):
                 'fak1':fields.float('Faktor1'),
                 'fak2':fields.float('Faktor2'),
                 'p_base':fields.selection([('n75','Nabavna  7.5'),('n80','Nabavna 8.0'),('tec','Nabavna tecaj'),('dom','Nabavna KN')],'Osnovica',help="Odabir osnove za izračun javne cijene"),
-                'prodajna':fields.float('Izr. Prod.', help="Pregled prodajne cijene prije uvrštenja")
+                'prodajna':fields.float('Izr. Prod.', help="Pregled izračunate prodajne cijene prije uvrštenja")
                 }
     
     _defaults = {
                  'fak1':1,
                  'fak2':1,
                  'p_base':'n75',
+                 'type':'product',
+                 'procure_method':'make_to_order'
                  }
     
     
@@ -96,23 +120,60 @@ class product_product(osv.Model):
         if ids==[] : return False
         prod = self.browse(cr, uid, ids[0]).product_tmpl_id.id
         t = self.pool.get('product.template')
-        return {'value':t.digitron(cr, uid, prod, p_base, fak1, fak2)[ids[0]]}
+        return {'value':t.digitron(cr, uid, prod, p_base, fak1, fak2)[0][ids[0]]}
     
-    def primjeni_na_kategoriju(self, cr, uid, ids, context=None):
+    
+    
+    def zapisi_nabavne(self, cr, uid, ids, context=None):
+        template=self.pool.get('product.template')
+        tecaj = get_tecaj_kn(self, cr, uid, ids)
+        
+        t_all_active=template.search(cr, uid, [('id','<',10000)])
+        nabavne = []
+        for t in template.browse(cr, uid, t_all_active):
+            
+            if t.nabavna_eur and t.nabavna_eur != 0.0 :
+                nab = t.nabavna_eur * tecaj
+                nabavne[t.id] = {'standard_price': nab}
+            elif t.nabavna_kn and t.nabavna_kn != 0.0 :
+                nabavne[t.id] = {'standard_price':t.nabavna_kn}
+        pass
+        #template.write(cr, uid, nabavne)
+        return True
+    
+    def primjeni_prodajnu(self, cr, uid, ids, context=None):
+        return self.primjeni_na_kategoriju(cr, uid, ids, tip="prod1", context=context )
+    
+    def primjeni_nabavnu(self, cr, uid, ids, context=None):
+        return self.primjeni_na_kategoriju(cr, uid, ids, tip = "nab1",context=context )
+        
+    def primjeni_na_kategoriju(self, cr, uid, ids, tip, context=None):
+        """
+        Tipovi zapisivanja: 
+        1. Prodajna sve prepiši
+        2. Prepiši nabavnu za kategoriju
+        """
+        
         prod=self.browse(cr, uid, ids[0])
         template = prod.product_tmpl_id
         tcat = template.categ_id.id
-        selected = self. pool.get('product.template').search(cr, uid, [('categ_id','=',tcat)])
+        selected = self.pool.get('product.template').search(cr, uid, [('categ_id','=',tcat)])
 
-        values=self.pool.get('product.template').digitron(cr, uid, selected, template.p_base, template.fak1, template.fak2)
+        vals = self.pool.get('product.template').digitron(cr, uid, selected, template.p_base, template.fak1, template.fak2)
+        values = vals[0] #mozda mi jos zatrebaju i drugacije formatirani.. 
         t=self.pool.get('product.template')
         for val in values:
-            t.write(cr, uid, val, {'list_price' : values[val]['prodajna'], 
+            if tip == "prod1":
+                t.write(cr, uid, val, {'list_price' : values[val]['prodajna'], 
                                    'fak1':template.fak1,
                                    'fak2':template.fak2,
                                    'p_base':template.p_base,
-                                   'prodajna':values[val]['prodajna']})
-            
+                                   'prodajna':values[val]['prodajna'],
+                                   })
+            elif tip == "nab1":
+                if values[val]['standard_price']:
+                    t.write(cr, uid, val, {'standard_price':values[val]['standard_price']})  
+        
         return True
     
     _columns = {

@@ -9,29 +9,36 @@
 			<field name="model">product.product</field>
 			<field name="inherit_id" ref="product.product_normal_form_view" />
 			<field name="arch" type="xml">
-				<field name="standard_price" position="after">
-					<group>
+				<notebook position="inside">
+				<page string="Mikra CIJENE">
+				<group colspan="4" col="4">
+					<group string="Unos nabavne cijene">
 					   <field name="nabavna_chf" />
 						<field name="nabavna_eur" />
 						<field name="nabavna_kn" />
 					</group>
-					<group>
+					<group string="Preračunate nabavne cijene">
 						<field name="rnabavna_75" readonly="1" attrs="{'invisible':[('nabavna_eur','=',0)]}"/>
 						<field name="rnabavna_80" readonly="1" attrs="{'invisible':[('nabavna_eur','=',0)]}"/>
 						<field name="rnabavna_tec" readonly="1" attrs="{'invisible':[('nabavna_eur','=',0)]}"/>
 					</group>
-
-					<group string="Izračun prodajne cijene iz " colspan="6" col="6">
+</group> 
+					<group string="Izračun prodajne cijene" colspan="6" col="6">
 					<field name="p_base" colspan="4" on_change="onchange_digitron(p_base, fak1, fak2)"/>
 					<newline/>
 					<field name="fak1" string="F1" on_change="onchange_digitron(p_base, fak1, fak2)"/>
 					<field name="fak2" string="* F2" onchange="onchange_digitron(p_base, fak1, fak2)"/>
 					<field name="prodajna" string="= prodajna"  />
 					</group>
-					<button name="primjeni_na_kategoriju" type="object" string="Primjeni na kategoriju" />
-                    <button name="uzmi_nabavnu" type="object" string="Prepiši nabavne cijene" />
-
-				</field>
+					<group string="POMOĆNE FUNKCIJE ZA CIJELU KATEGORIJU">
+					   <button name="primjeni_prodajnu" type="object" string="Primjeni izračun prodajne cijene" />
+					   <button name="primjeni_nabavnu" type="object" string="Prepiši nabavne cijene" />
+					   <!--  
+					   <button name="zapisi_nabavne" type="object" string="Prepiši nabavne cijene za kategoriju" />
+					   -->
+                    </group>
+                    </page>
+				</notebook>
 			</field>
 		</record>
 		
@@ -45,6 +52,9 @@
                     <field name="nabavna_eur" />
                     <field name="nabavna_kn" />
                     <field name="categ_id" invisible="1"/>
+                    <field name="cost_method" invisible="1" />
+                    <field name="procure_method" invisible="1" />
+                    <field name="supply_method" invisible="1" />
                     <field name="type" invisible="1"/>
                     <field name="list_price" />
                     <field name="p_base" on_change="onchange_digitron(p_base, fak1, fak2)"/>
@@ -64,6 +74,7 @@
                     <field name="description_sale"/>
                     <field name="categ_id" readonly="1"/>
                     <field name="type" invisible="1"/>
+                    <field name="produce_delay" invisible="1"/>
                     <field name="list_price" />
                     <field name="nabavna_eur" />
                     <field name="nabavna_kn" />
@@ -81,11 +92,17 @@
             <field name="arch" type="xml">
                 <search string="Pretraga proizvoda">
                     <field name="name" filter_domain="['|',('name','ilike',self),('category_id','ilike',self)]" />
-                    <filter name="state_notfin" string="Not finished" domain="[('state','!=','finish')]" />
+                    <filter name="listprice" string="List Price = 1" domain="[('list_price','=',1)]" />
+                    <filter name="bez_nabavne" string="Nema nabavnu cijenu" domain="['&amp;',('nabavna_eur','=',0),('nabavna_kn','=',0)]" />
+                    <filter name="bez_faktora" string="Nema faktore" domain="['&amp;',('fak1','=',1),('fak2','=',1)]" />
                     
                     <group expand="0" string="Group By...">
                         <separator />
                         <filter string="Kategorija" context="{'group_by':'categ_id'}" />
+                        <filter string="Tip" context="{'group_by':'type'}" />
+                        <filter string="Metoda nabave" context="{'group_by':'procure_method'}" />
+                        <filter string="Metoda supply" context="{'group_by':'supply_method'}" />
+                        <filter string="Metoda troška" context="{'group_by':'cost_method'}" />
                        
                     </group>
                 </search>
