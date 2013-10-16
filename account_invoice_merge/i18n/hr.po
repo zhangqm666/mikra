@@ -1,0 +1,156 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* account_invoice_merge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20130604-231058\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-16 11:23+0000\n"
+"PO-Revision-Date: 2013-10-16 13:36+0100\n"
+"Last-Translator: Davor Bojkić <bole@dajmi5.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+
+#. module: account_invoice_merge
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:50
+#, python-format
+msgid "Not all invoices are at the same currency!"
+msgstr "Svi računi nemaju istu valutu!"
+
+#. module: account_invoice_merge
+#: view:invoice.merge:0
+msgid "Please note that:"
+msgstr "Molimo obratite pažnju da:"
+
+#. module: account_invoice_merge
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:44
+#, python-format
+msgid "Not all invoices are at the same company!"
+msgstr "Svi računi ne priopadaju istom partneru!"
+
+#. module: account_invoice_merge
+#: view:invoice.merge:0
+msgid "Invoices will only be merged if:"
+msgstr "Računi mogu biti spojeni jedino :"
+
+#. module: account_invoice_merge
+#: view:invoice.merge:0
+msgid "* Invoice lines are exactly the same except for the product,quantity and unit"
+msgstr "* Stavke računa su identične izuzev proizvoda, količine i jedinica"
+
+#. module: account_invoice_merge
+#: view:invoice.merge:0
+msgid "Merge Invoices"
+msgstr "Spoji račune"
+
+#. module: account_invoice_merge
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:40
+#, python-format
+msgid "At least one of the selected invoices is %s!"
+msgstr "Najmanje jedan od odabranih računa %s!"
+
+#. module: account_invoice_merge
+#: view:invoice.merge:0
+msgid "Lines will only be merged if:"
+msgstr "Stavke će biti spojene jedino ako :"
+
+#. module: account_invoice_merge
+#: view:invoice.merge:0
+msgid "* Invoices are in draft"
+msgstr "* Računi su u stanju \"Nacrt\""
+
+#. module: account_invoice_merge
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:96
+#, python-format
+msgid "Partner Invoice"
+msgstr "Partner Invoice"
+
+#. module: account_invoice_merge
+#: view:invoice.merge:0
+msgid "* Invoices are have same company, partner, address, currency, journal, salesman, account, type"
+msgstr "* Invoices are have same company, partner, address, currency, journal, salesman, account, type"
+
+#. module: account_invoice_merge
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:42
+#, python-format
+msgid "Not all invoices use the same account!"
+msgstr "Not all invoices use the same account!"
+
+#. module: account_invoice_merge
+#: view:invoice.merge:0
+msgid "* Invoices belong to the same partner"
+msgstr "* Računi pripadaju istom partneru"
+
+#. module: account_invoice_merge
+#: view:invoice.merge:0
+#: model:ir.actions.act_window,name:account_invoice_merge.action_view_invoice_merge
+#: model:ir.model,name:account_invoice_merge.model_invoice_merge
+msgid "Merge Partner Invoice"
+msgstr "Spoji račun za partnera"
+
+#. module: account_invoice_merge
+#: view:invoice.merge:0
+msgid "Are you sure you want to merge these invoices ?"
+msgstr "Jeste li sigurni da želite spojiti ove račune ?"
+
+#. module: account_invoice_merge
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:46
+#, python-format
+msgid "Not all invoices are for the same partner!"
+msgstr "Svi računi nisu za istog partnera!"
+
+#. module: account_invoice_merge
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:48
+#, python-format
+msgid "Not all invoices are of the same type!"
+msgstr "Svi računi nisu istog tipa!"
+
+#. module: account_invoice_merge
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:34
+#, python-format
+msgid "Please select multiple invoice to merge in the list view."
+msgstr "Please select multiple invoice to merge in the list view."
+
+#. module: account_invoice_merge
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:40
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:42
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:44
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:46
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:48
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:50
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:52
+#, python-format
+msgid "Warning"
+msgstr "Upozorenje"
+
+#. module: account_invoice_merge
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:34
+#, python-format
+msgid "Warning!"
+msgstr "Upozorenje!"
+
+#. module: account_invoice_merge
+#: model:ir.model,name:account_invoice_merge.model_account_invoice
+msgid "Invoice"
+msgstr "Račun"
+
+#. module: account_invoice_merge
+#: view:invoice.merge:0
+msgid "Cancel"
+msgstr "Otkaži"
+
+#. module: account_invoice_merge
+#: code:addons/account_invoice_merge/wizard/invoice_merge.py:52
+#, python-format
+msgid "Not all invoices are at the same journal!"
+msgstr "Svi računi nisu u istom dnevniku!"
+
+#. module: account_invoice_merge
+#: view:invoice.merge:0
+msgid "or"
+msgstr "ili"
+
