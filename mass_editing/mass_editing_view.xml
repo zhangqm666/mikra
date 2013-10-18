@@ -40,6 +40,8 @@
                 <tree string="Object">
                     <field name="name"/>
                     <field name="model_id"/>
+                    <field name="ref_ir_act_window" />
+                    <field name="field_ids" />
                 </tree>
             </field>
         </record>

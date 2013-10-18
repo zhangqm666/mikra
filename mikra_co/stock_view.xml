@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+    <!-- 
     <record id="view_picking_out_form" model="ir.ui.view">
             <field name="name">stock.picking.out.form</field>
             <field name="model">stock.picking.out</field>
@@ -13,5 +14,50 @@
                 </xpath>
             </field>
     </record>
+     -->
+    
+    <record id="stock_inventory_line_mikra_form" model="ir.ui.view">
+            <field name="name">stock_inventory_line_mikra</field>
+            <field name="model">stock.inventory.line</field>
+            <field name="priority" eval="105" />
+            <field name="arch" type="xml">
+             <form string="Inventory lines" >
+                <field name="product_id"/>
+                <field name="inventory_id"/>
+                <field name="product_qty"/>
+                <field name="location_id" />
+                
+             </form>
+        </field>
+        </record>
+    <record id="stock_inventory_line_mikra_tree" model="ir.ui.view">
+            <field name="name">stock_inventory_line_mikra</field>
+            <field name="model">stock.inventory.line</field>
+            <field name="priority" eval="105" />
+            <field name="arch" type="xml">
+             <tree string="Inventory lines" >
+                <field name="product_id"/>
+                <field name="inventory_id"/>
+                <field name="product_qty"/>
+                <field name="location_id" />
+                
+             </tree>
+        </field>
+        </record>
+      
+      <record id="action_stock_inventory_line_mikra" model="ir.actions.act_window">
+            <field name="name">Stavke inventura</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.inventory.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="stock_inventory_line_mikra_tree"/>
+            <field name="context">{"group_by":'location_id'}</field>
+            <!-- 
+            <field name="context">{"group_by":'categ_id'}</field>
+            <field name="search_view_id" ref="product_search_form_view"/>
+             -->
+         </record>
+       
+        <menuitem id="menu_stock_inv_line_mikra" action="action_stock_inventory_line_mikra" name="Stavke inventura" parent="mikra_digitron" sequence="69"/>
     </data>
 </openerp>
