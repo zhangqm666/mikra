@@ -48,7 +48,7 @@
             multi="True"
             rml="mikra_co/report/request_quotation.rml"
             string="Narudžbenica"
-            attachment="('NARUDZBENICA_'+(object.name or '').replace('/','')+'_'+(object.partner_id.name).replace('/','')+'.pdf')"
+            attachment="('ORDER_'+(object.name or '').replace('/','')+'_'+(object.partner_id.name).replace('/','')+'.pdf')"
             />
             
     </data>

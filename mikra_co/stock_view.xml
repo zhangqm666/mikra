@@ -16,6 +16,56 @@
     </record>
      -->
     
+    
+    <record id="stock_move_mikra_form" model="ir.ui.view">
+            <field name="name">stock_move_mikra_form</field>
+            <field name="model">stock.move</field>
+            <field name="priority" eval="105" />
+            <field name="arch" type="xml">
+             <form string="Stock moves" >
+                <field name="product_id"/>
+                <field name="location_id"/>
+                <field name="location_dest_id"/>
+                <field name="state" />
+                
+             </form>
+        </field>
+        </record>
+     <record id="stock_move_mikra_tree" model="ir.ui.view">
+            <field name="name">stock_move_mikra_tree</field>
+            <field name="model">stock.move</field>
+            <field name="priority" eval="105" />
+            <field name="arch" type="xml">
+             <tree string="Stock moves" >
+                <field name="product_id"/>
+                <field name="location_id"/>
+                <field name="location_dest_id"/>
+                <field name="state" />
+                
+             </tree>
+        </field>
+        </record>
+    <record id="action_stock_move_mikra" model="ir.actions.act_window">
+            <field name="name">Stavke skladista</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.inventory.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="stock_inventory_line_mikra_tree"/>
+            <field name="context">{"group_by":'location_id'}</field>
+            <!-- 
+            <field name="context">{"group_by":'categ_id'}</field>
+            <field name="search_view_id" ref="product_search_form_view"/>
+             -->
+         </record>
+         
+         
+       
+        <menuitem id="menu_stock_move_mikra" action="action_stock_move_mikra" name="Stavke skladista" parent="mikra_digitron" sequence="71"/>
+    
+    
+    
+    
+    
     <record id="stock_inventory_line_mikra_form" model="ir.ui.view">
             <field name="name">stock_inventory_line_mikra</field>
             <field name="model">stock.inventory.line</field>
@@ -45,6 +95,24 @@
         </field>
         </record>
       
+      <record id="mikra_stock_inventory_line_filter" model="ir.ui.view">
+            <field name="name">mikra_stock_inventory_line_filter</field>
+            <field name="model">stock.inventory.line</field>
+            <field name="arch" type="xml">
+                <search string="Pretraga proizvoda">
+                    <field name="product_id" filter_domain="['|',('inventory_id','ilike',self),('product_id','ilike',self)]" />
+                    <filter name="qty0" string="Količina 0" domain="[('product_qty','=',0)]" />
+                                        
+                    <group expand="0" string="Group By...">
+                        <separator />
+                        <filter string="Lokacija" context="{'group_by':'location_id'}" />
+                        <filter string="Inventura" context="{'group_by':'inventory_id'}" />
+                       
+                    </group>
+                </search>
+            </field>
+        </record>
+       
       <record id="action_stock_inventory_line_mikra" model="ir.actions.act_window">
             <field name="name">Stavke inventura</field>
             <field name="type">ir.actions.act_window</field>
@@ -57,6 +125,8 @@
             <field name="search_view_id" ref="product_search_form_view"/>
              -->
          </record>
+         
+         
        
         <menuitem id="menu_stock_inv_line_mikra" action="action_stock_inventory_line_mikra" name="Stavke inventura" parent="mikra_digitron" sequence="69"/>
     </data>

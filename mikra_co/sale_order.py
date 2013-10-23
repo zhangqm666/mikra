@@ -47,4 +47,6 @@ class sale_order(osv.Model):
                 'report_name': 'mikra.sale.order', 
                 'datas': datas, 'nodestroy': True}
     
-    
+    _defaults = {
+                 'order_policy':'picking'
+                 }
