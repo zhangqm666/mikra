@@ -91,7 +91,7 @@
             <field name="model">product.template</field>
             <field name="arch" type="xml">
                 <search string="Pretraga proizvoda">
-                    <field name="name" filter_domain="['|',('name','ilike',self),('category_id','ilike',self)]" />
+                    <field name="name" filter_domain="[('name','ilike',self)]" />
                     <filter name="listprice" string="List Price = 1" domain="[('list_price','=',1)]" />
                     <filter name="bez_nabavne" string="Nema nabavnu cijenu" domain="['&amp;',('nabavna_eur','=',0),('nabavna_kn','=',0)]" />
                     <filter name="bez_faktora" string="Nema faktore" domain="['&amp;',('fak1','=',1),('fak2','=',1)]" />
