@@ -193,7 +193,7 @@
     <para style="terp_default_8"><font color="white"> </font></para>
     <para style="terp_default_8">  <font color="white"> </font>  </para>
     <para style="terp_default_8">  <font color="white"> </font>  </para>
-     <para style="terp_default_9">Napomena : [[ o.note ]]</para>
+     <para style="terp_default_9">Napomena : [[ o.note and o.note or removeParentNode('para') ]]</para>
   </pto>
   </story>
 </document>
