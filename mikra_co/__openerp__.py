@@ -48,13 +48,17 @@ Summary:
 
     'depends': [
                 'l10n_hr_fiskal',
-                'purchase'
+                'purchase',
+                'stock'
                 ],
     
     'update_xml': [
                    'product_view.xml',
                    'mikra_report.xml',
-                   'stock_view.xml'
+                   'stock_view.xml',
+                   'sale_order_view.xml',
+                   'purchase_order_view.xml',
+                   'account_invoice_view.xml'
                    ],
     "active": False,
     "installable": True,

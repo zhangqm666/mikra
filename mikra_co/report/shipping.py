@@ -28,7 +28,12 @@ class shipping(report_sxw.rml_parse):
         super(shipping, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
+            'sort_by_name':self._sort_by_name,
         })
+    
+    def _sort_by_name(self, theList):
+        theList.sort(key=lambda x: x.name, reverse=False)
+        return theList
 
 report_sxw.report_sxw(
        'report.mikra.sale.shipping',

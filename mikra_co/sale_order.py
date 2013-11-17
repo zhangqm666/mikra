@@ -46,6 +46,16 @@ class sale_order(osv.Model):
         return {'type': 'ir.actions.report.xml', 
                 'report_name': 'mikra.sale.order', 
                 'datas': datas, 'nodestroy': True}
+        
+    SORT_VRSTE = (('name_az','Po nazivu (A->Z)'),
+                  ('name_za','Po nazivu (Z->A)'),
+                  ('seq','Ručno postavljeni redosljed (snimiti prije ispisa)'),
+                  ('def','Redosljed upisivanja stavaka'))
+                     
+    _columns = {
+                'sort_print':fields.selection(SORT_VRSTE,'Redosljed stavaka pri ispisu',
+                                              help="Ostaviti prazno za ispis po redosljedu upisa stavaka ili izabrati željeni redosljed")
+                }
     
     _defaults = {
                  'order_policy':'picking'

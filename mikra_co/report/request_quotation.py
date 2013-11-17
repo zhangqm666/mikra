@@ -29,8 +29,14 @@ class request_quotation(report_sxw.rml_parse):
         super(request_quotation, self).__init__(cr, uid, name, context=context)
         self.localcontext.update({
             'time': time,
-            'user': self.pool.get('res.users').browse(cr, uid, uid, context)
+            'user': self.pool.get('res.users').browse(cr, uid, uid, context),
+            'sort_by_name':self._sort_by_name,
         })
+        
+    def _sort_by_name(self, theList):
+        theList.sort(key=lambda x: x.name, reverse=False)
+        return theList    
+        
 report_sxw.report_sxw('report.mikra.request.quotation',
                       'purchase.order',
                       'addons/mikra_co/report/request_quotation.rml',

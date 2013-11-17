@@ -34,8 +34,15 @@ import psycopg2
 class account_invoice(osv.Model):
     _inherit = "account.invoice"
     
+    SORT_VRSTE = (('name_az','Po nazivu (A->Z)'),
+                  ('name_za','Po nazivu (Z->A)'),
+                  ('seq','Ručno postavljeni redosljed (snimiti prije ispisa)'),
+                  ('def','Redosljed upisivanja stavaka'))
+    
     _columns = {
-                'narudzba':fields.char('Narudžba br', size=64)
+                'narudzba':fields.char('Narudžba br', size=64),
+                'sort_print':fields.selection(SORT_VRSTE,'Redosljed stavaka pri ispisu',
+                                              help="Ostaviti prazno za ispis po redosljedu upisa stavaka ili izabrati željeni redosljed")
                 }
     
     def invoice_print(self, cr, uid, ids, context=None):

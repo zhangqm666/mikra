@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+    <!--
+    <record id="view_stock_picking_out_line_sort_inherit" model="ir.ui.view" >
+			<field name="name">view.stock.picking.out.line.sort.inherit</field>
+			<field name="model">stock.picking.out</field>
+			<field name="inherit_id" ref="stock.view_picking_out_form"/>
+			<field name="arch" type="xml">
+				<field name="move_lines" position="before">
+					<group colspan="4" col="2">
+						<field name="sort_print" />
+					</group>
+				</field>
+			</field>
+		</record>
+ 	-->
     <!-- 
     <record id="view_picking_out_form" model="ir.ui.view">
             <field name="name">stock.picking.out.form</field>
@@ -16,7 +30,7 @@
     </record>
      -->
     
-    
+    <!-- DODANO U POSEBNI IZBORNIK MIKRA -->
     <record id="stock_move_mikra_form" model="ir.ui.view">
             <field name="name">stock_move_mikra_form</field>
             <field name="model">stock.move</field>
@@ -27,7 +41,6 @@
                 <field name="location_id"/>
                 <field name="location_dest_id"/>
                 <field name="state" />
-                
              </form>
         </field>
         </record>
@@ -41,7 +54,6 @@
                 <field name="location_id"/>
                 <field name="location_dest_id"/>
                 <field name="state" />
-                
              </tree>
         </field>
         </record>
@@ -57,14 +69,7 @@
             <field name="search_view_id" ref="product_search_form_view"/>
              -->
          </record>
-         
-         
-       
-        <menuitem id="menu_stock_move_mikra" action="action_stock_move_mikra" name="Stavke skladista" parent="mikra_digitron" sequence="71"/>
-    
-    
-    
-    
+    <menuitem id="menu_stock_move_mikra" action="action_stock_move_mikra" name="Stavke skladista" parent="mikra_digitron" sequence="71"/>
     
     <record id="stock_inventory_line_mikra_form" model="ir.ui.view">
             <field name="name">stock_inventory_line_mikra</field>
@@ -76,7 +81,6 @@
                 <field name="inventory_id"/>
                 <field name="product_qty"/>
                 <field name="location_id" />
-                
              </form>
         </field>
         </record>
@@ -90,7 +94,6 @@
                 <field name="inventory_id"/>
                 <field name="product_qty"/>
                 <field name="location_id" />
-                
              </tree>
         </field>
         </record>
@@ -102,12 +105,10 @@
                 <search string="Pretraga proizvoda">
                     <field name="product_id" filter_domain="['|',('inventory_id','ilike',self),('product_id','ilike',self)]" />
                     <filter name="qty0" string="Količina 0" domain="[('product_qty','=',0)]" />
-                                        
                     <group expand="0" string="Group By...">
                         <separator />
                         <filter string="Lokacija" context="{'group_by':'location_id'}" />
                         <filter string="Inventura" context="{'group_by':'inventory_id'}" />
-                       
                     </group>
                 </search>
             </field>
@@ -125,9 +126,6 @@
             <field name="search_view_id" ref="product_search_form_view"/>
              -->
          </record>
-         
-         
-       
         <menuitem id="menu_stock_inv_line_mikra" action="action_stock_inventory_line_mikra" name="Stavke inventura" parent="mikra_digitron" sequence="69"/>
     </data>
 </openerp>

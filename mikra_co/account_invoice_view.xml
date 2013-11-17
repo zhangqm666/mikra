@@ -1,0 +1,17 @@
+<openerp>
+	<data>
+		<record id="view_account_invoice_line_sort_inherit" model="ir.ui.view" >
+			<field name="name">view.account.invoice.line.sort.inherit</field>
+			<field name="model">account.invoice</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="account.invoice_form"/>
+			<field name="arch" type="xml">
+				<field name="invoice_line" position="before">
+					<group colspan="4" col="2">
+						<field name="sort_print" attrs="{'readonly':[('state','!=','draft')]}" />
+					</group>
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -125,6 +125,7 @@ class product_product(osv.Model):
     
     
     def zapisi_nabavne(self, cr, uid, ids, context=None):
+        
         template=self.pool.get('product.template')
         tecaj = get_tecaj_kn(self, cr, uid, ids)
         
@@ -145,6 +146,7 @@ class product_product(osv.Model):
         return self.primjeni_na_kategoriju(cr, uid, ids, tip="prod1", context=context )
     
     def primjeni_nabavnu(self, cr, uid, ids, context=None):
+        
         return self.primjeni_na_kategoriju(cr, uid, ids, tip = "nab1",context=context )
         
     def primjeni_na_kategoriju(self, cr, uid, ids, tip, context=None):

@@ -1,0 +1,17 @@
+<openerp>
+	<data>
+		<record id="view_purchase_order_line_sort_inherit" model="ir.ui.view" >
+			<field name="name">view.purchase.order.line.sort.inherit</field>
+			<field name="model">purchase.order</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="purchase.purchase_order_form"/>
+			<field name="arch" type="xml">
+				<field name="order_line" position="before">
+					<group colspan="4" col="2">
+						<field name="sort_print" />
+					</group>
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

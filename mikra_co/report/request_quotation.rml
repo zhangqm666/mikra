@@ -96,7 +96,7 @@
       </tr>
     </blockTable>
     <section>
-      <para style="terp_default_9">[[ repeatIn(order.order_line,'order_line') ]]</para>
+      <para style="terp_default_9">[[ repeatIn(sort_by_name(order.order_line),'order_line') ]]</para>
       <blockTable colWidths="460,61.0" style="Table_Product_Line">
         <tr>
           <td>

@@ -38,6 +38,9 @@ class sale_order(report_sxw.rml_parse):
         self.localcontext.update({
             'time': time,
             'show_discount':self._show_discount,
+            'sort_by_name':self._sort_by_name,
+            'sortiraj':self._sortiraj
+            
         })
         
     def _show_discount(self, uid, context=None):
@@ -47,7 +50,28 @@ class sale_order(report_sxw.rml_parse):
         except:
             return False
         return group_id in [x.id for x in self.pool.get('res.users').browse(cr, uid, uid, context=context).groups_id]
-
+    
+    def _sort_by_name(self, theList):
+        theList.sort(key=lambda x: x.name, reverse=False)
+        return theList
+    
+    def _sortiraj(self, theList, order_by=None):
+        
+        if not order_by or order_by == 'def':
+            return theList
+        
+        if order_by == 'name_az':
+            theList.sort(key=lambda x: x.name, reverse=False)
+        elif order_by == "name_za":
+            theList.sort(key=lambda x: x.name, reverse=True)
+        elif order_by == 'seq':
+            # TODO provjeri jel postoje seqvence.. kaj ako ih nema? 
+            theList.sort(key=lambda x: x.sequence, reverse=True)
+            pass
+        
+        return theList
+        
+    
 
 report_sxw.report_sxw(
     'report.mikra.sale.order',
