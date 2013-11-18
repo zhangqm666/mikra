@@ -46,12 +46,12 @@ class stock_picking(osv.Model):
                 'sort_print':fields.selection(SORT_VRSTE,'Redosljed stavaka pri ispisu',
                                               help="Ostaviti prazno za ispis po redosljedu upisa stavaka ili izabrati željeni redosljed")
                 }
-    
+    """
+
     def write(self, cr, uid, ids, vals, context=None):
         if isinstance(ids, (int, long)):
             ids = [ids]
-        """
-        if uid != 1:
+                if uid != 1:
             frozen_fields = set(['product_qty', 'product_uom', 'product_uos_qty', 'product_uos', 'location_id', 'location_dest_id', 'product_id'])
             for move in self.browse(cr, uid, ids, context=context):
                 if move.state == 'done':
@@ -60,7 +60,8 @@ class stock_picking(osv.Model):
                                              _('Quantities, Units of Measure, Products and Locations cannot be modified on stock moves that have already been processed (except by the Administrator).'))
         
         Izbacio da ne jebe mirkeca.. inače ne dirati!
-        """
+    Moram ovo doraditi... zasad bez 
+    """
         
         
         return  super(stock_move, self).write(cr, uid, ids, vals, context=context)
