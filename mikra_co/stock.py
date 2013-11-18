@@ -61,9 +61,9 @@ class stock_picking(osv.Model):
         
         Izbacio da ne jebe mirkeca.. inače ne dirati!
     Moram ovo doraditi... zasad bez 
-    """
+    
         
         
         return  super(stock_move, self).write(cr, uid, ids, vals, context=context)
-
+    """
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
