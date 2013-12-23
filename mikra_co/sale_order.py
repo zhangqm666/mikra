@@ -47,6 +47,19 @@ class sale_order(osv.Model):
                 'report_name': 'mikra.sale.order', 
                 'datas': datas, 'nodestroy': True}
         
+    def action_button_confirm(self, cr, uid, ids, context=None):
+        tomo = self.pool.get('res.users').search(cr, uid,[('login','=','tbozicevic')])[0]
+        ivanal = self.pool.get('res.partner').search(cr, uid,[('name','=','IVANAL d.o.o.')])[0]
+        partner = self.browse(cr, uid, ids[0]).partner_id.id #pool.get('sale.order')
+        if uid == tomo and partner == ivanal:
+            if not self.browse(cr, uid, ids[0]).origin:
+                #self.pool.get('sale.order').write(cr, uid, ids[0],{'origin':'WARNED'})
+                raise osv.except_osv(('TOMO PAZI!'),('Ako roba ide sa skladista IVANAL odaberi Prodavaonica IVANAL\n'\
+                                                    'Ako prodaješ direktno, onda je prodavaonica MIKRA VP.\n\n'\
+                                                    'Upiši OK u polje Izvorni dokument da potvrdiš ovu ponudu!'))
+            
+        return super(sale_order, self).action_button_confirm(cr, uid, ids, context=None)
+        
     SORT_VRSTE = (('name_az','Po nazivu (A->Z)'),
                   ('name_za','Po nazivu (Z->A)'),
                   ('seq','Ručno postavljeni redosljed (snimiti prije ispisa)'),
