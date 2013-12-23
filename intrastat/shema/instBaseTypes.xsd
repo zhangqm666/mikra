@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://apisit.hr/b28/inst/ed/2011/baseTypes"
+	targetNamespace="http://apisit.hr/b28/inst/ed/2011/baseTypes"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified"
+	version="1.00">
+	
+	<xsd:simpleType name="FlowOfGoodsType">
+		<xsd:annotation>
+			<xsd:documentation>Tok robe</xsd:documentation>
+			<xsd:documentation>1 - primitak, 2 - otprema</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:short">
+			<xsd:enumeration value="1" />
+			<xsd:enumeration value="2" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ReferencePeriodType">
+		<xsd:annotation>
+			<xsd:documentation>Razdoblje izvještavanja</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:gYearMonth">
+			<xsd:minInclusive value="2013-01" />
+			<xsd:maxInclusive value="2099-01" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ReportTypeType">
+		<xsd:annotation>
+			<xsd:documentation>Vrsta obrasca</xsd:documentation>
+			<xsd:documentation>I - inicijalni, 0 - prazni, N - nadomjesni, B - brisanje</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="I" />
+			<xsd:enumeration value="0" />
+			<xsd:enumeration value="N" />
+			<xsd:enumeration value="B" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ReportDateType">
+		<xsd:annotation>
+			<xsd:documentation>Datum popunjavanja izvještaja</xsd:documentation>
+			<xsd:documentation>format: YYYY-MM-DD</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:date">
+			<xsd:minInclusive value="2013-01-01" />
+			<xsd:maxInclusive value="2099-12-31" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="PSICountryCodeType">
+		<xsd:annotation>
+			<xsd:documentation>Država izvještajne jedinice</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="HR"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="PSININumberType">
+		<xsd:annotation>
+			<xsd:documentation>OIB izvještajne jedinice</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{11}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="EconomicOperatorNameType">
+		<xsd:annotation>
+			<xsd:documentation>Naziv poslovnog subjekta (izvještajne jedinice / deklaranta)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+			<xsd:whiteSpace value="collapse" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="EconomicOperatorAddressType">
+		<xsd:annotation>
+			<xsd:documentation>Adresa poslovnog subjekta (izvještajne jedinice / deklaranta)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:whiteSpace value="collapse" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="CountryCodeType">
+		<xsd:annotation>
+			<xsd:documentation>Šifra države ISO 3166-1 alpha-2 format, prema šifrarniku geonomenklature</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+			<xsd:pattern value="[A-Z]{2}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="DeclarantNINumberType">
+		<xsd:annotation>
+			<xsd:documentation>Nacionalni identifikacijski (porezni?) broj deklaranta</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+			<xsd:annotation>
+				<xsd:documentation>Porezni broj u VIES-u može biti alfanumerički</xsd:documentation>
+			</xsd:annotation>
+			<xsd:pattern value="[\da-zA-Z]{5,18}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="DeclarantCountryType">
+		<xsd:annotation>
+			<xsd:documentation>Država deklaranta</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token"/>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="IntrastatDepartmentType">
+		<xsd:annotation>
+			<xsd:documentation>Intrastat odjel i zadužena carinarnica</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="TotalItemsType">
+		<xsd:annotation>
+			<xsd:documentation>Ukupan broj stavaka</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:unsignedInt" />
+	</xsd:simpleType>
+
+	<xsd:simpleType name="ItemNrType">
+		<xsd:annotation>
+			<xsd:documentation>Redni broj stavke</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:unsignedInt">
+			<xsd:minInclusive value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="CN8CodeType">
+		<xsd:annotation>
+			<xsd:documentation>Šifra robe</xsd:documentation>
+			<xsd:documentation>8 znamenkasta tarifna oznaka robe prema kombiniranoj nomenklaturi na razini EU.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+			<xsd:pattern value="\d{8}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="GoodsDescriptionType">
+		<xsd:annotation>
+			<xsd:documentation>Opis robe</xsd:documentation>
+			<xsd:documentation>Trgovački naziv robe</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token" />
+	</xsd:simpleType>
+
+	<xsd:simpleType name="PlaceOfDeliveryCodeType">
+		<xsd:annotation>
+			<xsd:documentation>Mjesto isporuke (incoterms) prema šifrarniku</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:short">
+			<xsd:minInclusive value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="DeliveryTermsCodeType">
+		<xsd:annotation>
+			<xsd:documentation>Uvjet isporuke prema šifrarniku</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+			<xsd:pattern value="[A-Z]{3}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="NatureOfTransactionCodeType">
+		<xsd:annotation>
+			<xsd:documentation>Šifra vrste posla (A/B)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:short">
+			<xsd:minInclusive value="0" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="TransportModeType">
+		<xsd:annotation>
+			<xsd:documentation>Vrsta prometa</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:short">
+			<xsd:minInclusive value="1" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="NetWeightType">
+		<xsd:annotation>
+			<xsd:documentation>Neto masa (kg)</xsd:documentation>
+		</xsd:annotation>
+			<xsd:restriction base="xsd:decimal">
+				<xsd:pattern value="[0-9]{1,12}\.[0-9]{3}" />
+				<xsd:minInclusive value="0.0" />
+			</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="QuantityInSUType">
+		<xsd:annotation>
+			<xsd:documentation>Količina u jedinici mjere za robu u kombiniranoj	nomenklaturi (KN)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:pattern value="[0-9]{1,15}\.[0-9]{3}"></xsd:pattern>
+			<xsd:minExclusive value="0.0" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="MonetaryAmountType">
+		<xsd:annotation>
+			<xsd:documentation>Novčana vrijednost robe (fakturna/statistička) - u HRK</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:pattern value="[0-9]{1,12}" />
+			<xsd:minExclusive value="0.0" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="FormStatusCodeType">
+		<xsd:annotation>
+			<xsd:documentation>Status zaprimljenog objekta - šifra</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:int">
+			<xsd:enumeration value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="FormStatusMessageType">
+		<xsd:annotation>
+			<xsd:documentation>Status zaprimljenog objekta - opis</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="Intrastat datoteka je tehnički i formalno ispravna."/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="RegistrationNumberType">
+		<xsd:annotation>
+			<xsd:documentation>Evidencijski broj zaprimljenog IR obrasca</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+			<xsd:pattern value="\d{10}" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+</xsd:schema>

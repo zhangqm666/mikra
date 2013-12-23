@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://apisit.hr/b28/inst/ed/2011/ir001a"
+	xmlns:bt="http://apisit.hr/b28/inst/ed/2011/baseTypes"
+	xmlns:ct="http://apisit.hr/b28/inst/ed/2011/complexTypes"
+	targetNamespace="http://apisit.hr/b28/inst/ed/2011/ir001a"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified"
+	version="1.00">
+
+  	<xsd:import namespace="http://apisit.hr/b28/inst/ed/2011/baseTypes" schemaLocation="instBaseTypes.xsd" />
+	<xsd:import namespace="http://apisit.hr/b28/inst/ed/2011/complexTypes" schemaLocation="instComplexTypes.xsd" />
+
+	<xsd:element name="IR001A" type="IR001AType"/>
+	
+	<xsd:complexType name="IR001AType">
+		<xsd:annotation>
+			<xsd:documentation>Intrastat obrazac</xsd:documentation>
+			<xsd:documentation>poruka prema Intrastat sustavu</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Envelope" type="EnvelopeType" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="EnvelopeType">
+		<xsd:annotation>
+			<xsd:documentation>Omotnica obrasca</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Header" type="HeaderType"/>
+			<xsd:element name="Declaration" type="DeclarationType" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="HeaderType">
+		<xsd:annotation>
+			<xsd:documentation>Zaglavlje izvještaja</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="FlowOfGoods" type="bt:FlowOfGoodsType"/>
+			<xsd:element name="PSI" type="ct:PSIType"/>
+			<xsd:element name="ReferencePeriod" type="bt:ReferencePeriodType"/>
+			<xsd:element name="Declarant" type="ct:DeclarantType" minOccurs="0" />
+			<xsd:element name="IntrastatDepartment" type="bt:IntrastatDepartmentType" minOccurs="0" />
+			<xsd:element name="ReportType" type="bt:ReportTypeType"/>
+			<xsd:element name="ReportDate" type="bt:ReportDateType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="DeclarationType">
+		<xsd:annotation>
+			<xsd:documentation>Deklaracija roba za prijavu</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="Item" type="ItemType" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="TotalItems" type="bt:TotalItemsType" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ItemType">
+		<xsd:annotation>
+			<xsd:documentation>Stavka obrasca - detalji robe</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ItemNr" type="bt:ItemNrType" />
+			<xsd:element name="CN8Code" type="bt:CN8CodeType" />
+			<xsd:element name="GoodsDescription" type="bt:GoodsDescriptionType" />
+			<xsd:element name="DestinationCountryCode" type="bt:CountryCodeType" />
+			<xsd:element name="DeliveryTerms" type="ct:DeliveryTermsType" />
+			<xsd:element name="NatureOfTransaction" type="ct:NatureOfTransactionType" />
+			<xsd:element name="TransportMode" type="bt:TransportModeType" />
+			<xsd:element name="CountryOfOriginCode" type="bt:CountryCodeType" minOccurs="0" />
+			<xsd:element name="NetWeight" type="bt:NetWeightType" />
+			<xsd:element name="QuantityInSU" type="bt:QuantityInSUType" minOccurs="0" />
+			<xsd:element name="InvoicedAmount" type="bt:MonetaryAmountType" />
+			<xsd:element name="StatisticalValue" type="bt:MonetaryAmountType" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
