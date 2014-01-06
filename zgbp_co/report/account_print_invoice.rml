@@ -101,25 +101,20 @@
     <para style="P5">
       <font face="Helvetica">[[o.uredjaj_id.prostor_id.ulica]] [[o.uredjaj_id.prostor_id.kbr ]]</font>
       <font face="Helvetica"> [[o.uredjaj_id.prostor_id.kbr_dodatak]]</font>
-      <font face="Helvetica">, </font>
-    </para>
+      <font face="Helvetica">, </font>    </para>
     <para style="P3">[[o.uredjaj_id.prostor_id.posta]] [[o.uredjaj_id.prostor_id.naselje]]</para>
-    <para style="P6">
-      <font color="white"> </font>
-    </para>
-    <para style="P4">
-      <font color="white"> </font>
-    </para>
-    <para style="P1">
-      <font color="white"> </font>
-    </para>
-    <para style="terp_header">Invoice [[ ((o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')) or removeParentNode('para')) and '' ]] [[ o.number ]]</para>
+    <para style="P6"> <font color="white"> </font>  </para>
+    <para style="P4"> <font color="white"> </font>  </para>
+    <para style="P1"><font color="white"> </font> </para>
+    <para style="terp_header">Invoice [[ ((o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')) or removeParentNode('para')) and '' ]] [[ o.fiskal_broj or o.number  ]]</para>
     <para style="terp_header">PRO-FORMA [[ ((o.type == 'out_invoice' and o.state == 'proforma2') or removeParentNode('para')) and '' ]]</para>
     <para style="terp_header">Draft Invoice [[ ((o.type == 'out_invoice' and o.state == 'draft') or removeParentNode('para')) and '' ]]</para>
     <para style="terp_header">Cancelled Invoice [[ ((o.type == 'out_invoice' and o.state == 'cancel') or removeParentNode('para')) and '' ]] [[ o.number ]]</para>
     <para style="terp_header">Refund [[ (o.type=='out_refund' or removeParentNode('para')) and '' ]] [[ o.number ]]</para>
     <para style="terp_header">Supplier Refund [[ (o.type=='in_refund' or removeParentNode('para')) and '' ]] [[ o.number ]]</para>
     <para style="terp_header">Supplier Invoice [[ (o.type=='in_invoice' or removeParentNode('para')) and '' ]] [[ o.number ]]</para>
+    
+    <para style="terp_default_8">Interni broj     : [[ o.number or '' ]]</para>
     <para style="terp_default_9">ZKI : [[o.zki]]</para>
     <para style="terp_default_9">JIR : [[o.jir]]</para>
     <para style="terp_default_8">Način plaćanja : [[ (o.nac_plac=="G" and "Gotovina" or
