@@ -84,7 +84,7 @@ class purchase_order(osv.osv):
     def _prepare_order_line_move(self, cr, uid, order, order_line, picking_id, context=None):
         res = super(purchase_order, self)._prepare_order_line_move(cr, uid, order, order_line, picking_id)
         res['country_origin_id'] = order_line.country_origin_id.id
-        res['customer_id'] = order_line.customer_id.id
+        #res['customer_id'] = order_line.customer_id.id
         return res
 
 purchase_order()
