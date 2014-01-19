@@ -2,7 +2,7 @@
 <openerp>
 	<data>
 	    <menuitem id="menu_mikra" name="Mikra" sequence="10"  /> 
-        <menuitem id="mikra_digitron" name="Kalkulator" parent="menu_mikra" />
+        <menuitem id="mikra_digitron" name="Proizvodi" parent="menu_mikra" />
 	
 		<record id="product_normal_form_view_mikra_inherit" model="ir.ui.view">
 			<field name="name">product_normal_form_view_mikra_inherit</field>
@@ -86,8 +86,8 @@
             </field>
         </record>
         
-        <record id="mikra_product_filter" model="ir.ui.view">
-            <field name="name">mikra_product_filter</field>
+        <record id="mikra_product_price_filter" model="ir.ui.view">
+            <field name="name">mikra_product_price_filter</field>
             <field name="model">product.template</field>
             <field name="arch" type="xml">
                 <search string="Pretraga proizvoda">
@@ -125,5 +125,57 @@
        
         <menuitem id="menu_product_mikra" action="product_normal_action_mikra" name="Formiranje cijena" parent="mikra_digitron" sequence="69"/>
          
+        <!--	
+        <record id="product_template_mikra_intrastat_tree_view" model="ir.ui.view">
+            <field name="name">product_template_mikra_intrastat_tree_view</field>
+            <field name="model">product.template</field>
+            <field name="priority" eval="105" />
+            <field name="arch" type="xml">
+                <tree string="Products" editable="top" delete="false" create="false" >
+                    <field name="name" readonly="1"/>
+					<field name="intrastat_id"  />
+					<field name="weight_net" />
+					<field name="weight" />	                    
+                    <field name="nabavna_eur" />
+                    <field name="categ_id" invisible="1"/>
+                    <field name="cost_method" invisible="1" />
+                    <field name="procure_method" invisible="1" />
+                    <field name="supply_method" invisible="1" />
+                    <field name="type" invisible="1"/>
+                    <field name="list_price" />
+								
+                </tree>
+            </field>
+        </record>
+        <record id="mikra_product_intrastat_filter" model="ir.ui.view">
+            <field name="name">mikra_product_intrastat_filter</field>
+            <field name="model">product.template</field>
+            <field name="arch" type="xml">
+                <search string="Pretraga proizvoda">
+                    <field name="name" filter_domain="[('name','ilike',self)]" />
+                    <filter name="no_code" string="No Intrastat code" domain="[('instrastat_id','=',False)]" />
+                    <filter name="no_weight" string="Nema težinu" domain="[('weight','=',False)]" />
+                    <filter name="no_net_weight" string="Nema netto težinu" domain="[('weight_net','=',False)]" />
+                    
+                    <group expand="0" string="Group By...">
+                        <separator />
+                        <filter string="Intrastat code" context="{'group_by':'intrastat_id'}" />
+                        <filter string="Tip" context="{'group_by':'type'}" />
+                     
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="product_intrastat_action_mikra" model="ir.actions.act_window">
+            <field name="name">Intrastat provjera</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="product_template_mikra_intrastat_tree_view"/>
+            <field name="context">{}</field>
+            
+         </record>
+        <menuitem id="menu_product_intrastat_mikra" action="product_intrastat_action_mikra" name="Intrastat podaci" parent="mikra_digitron" sequence="69"/>
+        -->
 	</data>
 </openerp>

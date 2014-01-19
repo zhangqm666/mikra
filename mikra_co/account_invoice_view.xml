@@ -8,7 +8,7 @@
 			<field name="arch" type="xml">
 				<field name="invoice_line" position="before">
 					<group colspan="4" col="2">
-						<field name="sort_print" attrs="{'readonly':[('state','!=','draft')]}" />
+						<field name="sort_print" />
 					</group>
 				</field>
 			</field>
