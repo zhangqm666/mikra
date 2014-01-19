@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2012 Mentis d.o.o. (<http://mentis.si/openerp>).
+#    Copyright (C) 2014 DAJ MI 5 (<http://www.dajmi5.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,24 +20,22 @@
 ##############################################################################
 
 from osv import osv, fields
-import time
 
-class intrastat_transaction_type(osv.osv):
-    _name = "intrastat.transaction.type"
-    _description = "Intrastat transaction types"
+class delivery_carrier(osv.Model):
+    _inherit  = "delivery.carrier"
     
-    def _concat_code_name(self, cr, uid, ids, fields, arg, context=None):
-        res={}
-        for codes in self.browse(cr,uid,ids,context=context):
-            res[codes.id] = codes.code + ' ' + codes.short_name
-        return res
-        
+    _VRSTE_PROMETA=[('1','Pomorski promet'),
+                    ('2','Željeznički promet'),
+                    ('3','Cestovni promet'),
+                    ('4','Zračni promet'),
+                    ('5','Poštanska pošiljka'),
+                    ('6','Fiksne prometne instalacije'),
+                    ('7','Promet kopnenim plovnim putevima'),
+                    ('8','Vlastiti pogon')]
+    
     _columns = {
-        'code': fields.char('Transaction Type Code', size=2, required=True),
-        'short_name': fields.char('Short description', size=36, required=True),
-        'name': fields.function(_concat_code_name, type='char', method=True, string='Description', store=True),
-        'full_description': fields.text('Full Description'),
-    }
-    _order = "code"
-
-intrastat_transaction_type()
+                'vrsta':fields.selection(_VRSTE_PROMETA,'Vrsta prometa',help="Potrebno radi intrastat izvještaja", required="True")
+                }
+    
+    
+    

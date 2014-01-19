@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!--   DEFAULT TRANSACTION TYPE FOR COMPANY -->
+        <record id="view_company_form_transport_type" model="ir.ui.view">
+            <field name="name">view.company.form.transport</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+            	<field name="currency_id" position="after">
+	       	        <field name="def_transaction_type" />
+					<button name="ajde_popravi" string="POPRAVI1" type="object" />	       	        
+			    </field>
+            </field>
+        </record>   
+    </data>
+</openerp>

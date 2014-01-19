@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!-- ......PURCHASE ORDER..... -->
+        <record id="purchase_order_form_intrastat" model="ir.ui.view">
+            <field name="name">purchase.order.form.intrastat</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            	<field name="shipped" position="after">
+                    <field name="transaction_type_id"/>
+					<field name="incoterm" />                    
+                </field>
+            </field>
+        </record>
+        
+        <!-- ......PURCHASE ORDER LINE..... -->
+<!--        <record id="purchase_order_line_form_intrastat" model="ir.ui.view">
+            <field name="name">purchase.order.line.form.intrastat</field>
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            	<field name="price_unit" position="after">
+                    <field name="country_origin_id"/>
+                </field>
+            </field>
+        </record>-->
+        
+        <!-- ...PURCHASE ORDER (LINE) - TREE/FORM... 
+	    <record id="view_purchase_order_line_form_tree_intrastat" model="ir.ui.view">
+	        <field name="name">purchase.order.line.form.intrastat</field>
+	        <field name="model">purchase.order</field>
+	        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+	        <field name="arch" type="xml">
+	            <data>
+	            	<xpath expr="//notebook/page[@string='Purchase Order']/field[@name='order_line']/tree/field[@name='name']" position="after">
+	            		<field name="country_origin_id" colspan="4"/>
+	            	</xpath>
+	            </data>
+	        </field>
+	    </record>
+	    -->
+	    <!-- ...PURCHASE ORDER (LINE) - FORM... 
+    <record id="view_purchase_order_line_form_intrastat" model="ir.ui.view">
+        <field name="name">purchase.order.line.form.intrastat</field>
+        <field name="model">purchase.order.line</field>
+        <field name="inherit_id" ref="purchase.purchase_order_line_form"/>
+        <field name="arch" type="xml">
+            <data>
+            	<xpath expr="(//form/sheet/group/group)[2]/field[@name='date_planned']" position="after">
+            		<field name="country_origin_id" />
+            	</xpath>
+            	<xpath expr="//form/sheet/group/group/field[@name='date_planned']" position="after">
+            		<separator string="" colspan="2"/>
+            	</xpath>
+            	<xpath expr="//form/sheet/group/group/field[@name='country_origin_id']" position="after">
+            		<separator string="" colspan="2"/>
+            	</xpath>
+            </data>
+        </field>
+    </record>
+    -->
+    </data>
+</openerp>
