@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
             	<field name="currency_id" position="after">
 	       	        <field name="def_transaction_type" />
-					<button name="ajde_popravi" string="POPRAVI1" type="object" />	       	        
+					<button name="ajde_popravi" string="POPRAVI1" type="object" help="Prepravi sve ulazne račune od stranih dobavljača u eur i upiše cijenu eur nabavnu" />	       	        
 			    </field>
             </field>
         </record>   

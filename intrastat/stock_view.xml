@@ -9,6 +9,11 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
             	<field name="date_done" position="after">
+                    <field name="carrier_id"/>
+                    <field name="carrier_tracking_ref"/>
+                    <field name="number_of_packages"/>
+                </field>
+            	<field name="date_done" position="after">
                     <field name="transaction_type_id"/>
 					<field name="incoterm" />                    
                 </field>

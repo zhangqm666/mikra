@@ -53,10 +53,10 @@ candidate for Croatia Localization pack
         'purchase_order_view.xml',
         'delivery_view.xml',
         'stock_view.xml',
-        'product_view.xml'
+        'product_view.xml',
         #'l10n_hr_report_intrastat_view.xml'
         #'report/intrastat_report.xml',
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
             ],
     'demo_xml': [],
     'installable': True,

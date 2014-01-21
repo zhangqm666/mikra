@@ -30,7 +30,7 @@
 				<notebook position="inside">
 					<page string="Zavisni troskovi" >
 						<group>
-						<field name="dep_cost" nolabel="1"/>
+						<field name="dep_cost" nolabel="1" domain="[('is_accessory_cost','=',True)]"/>
 						</group>						
 						
 					</page>					
