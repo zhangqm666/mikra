@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+    	<record id="account_invoice_dep_cost_calculation" model="ir.ui.view" >
+    		<field name="name">Zavisni troskovi</field>
+    		<field name="model">account.dep.cost</field>
+    		<field name="arch" type="xml">
+    			<form string="Zavisni troskovi">	
+					<group colspan="4" col="4">			
+						<field name="currency_rate" domain="[('currency_id','=',30)]" attrs="{'invisible':[('show_curr','=',False)]}"/>	
+						<field name="curr_rate_amount" readonly="1" attrs="{'invisible':[('show_curr','=',False)]}"/>
+						<field name="show_curr" invisible="1" />							
+					</group>
+					<field name="invoice_id"/>
+					<field name="cost_type" on_change="onchange_calculate(cost_type)"/>	
+					<notebook colspan="4">					
+						<page string="Products" >				
+							<field name="prod_lines" nolabel="1" >
+								<tree string="Proizvodi" editable="top" create="false" delete="false">
+									<field name="prod_line" invisible="1" />
+    								<field name="prod_name" readonly="1"/>
+									<field name="prod_qty" readonly="1"/>
+									<field name="prod_weight" readonly="1"/>									
+									<field name="prod_subtotal" readonly="1"/>
+									<field name="prod_currency" readonly="1"/>
+									<field name="prod_hrk" readonly="1"/>
+									<field name="prod_hrk_kom" readonly="1"/>
+									<field name="cost_amount" />	
+    							</tree>
+							</field>
+						</page>
+						<page string="Costs">
+							<field name="cost_lines" nolabel="1"  >
+								<tree string="Zavisni troskovi" >
+									<field name="cost_line" readonly="1" />
+    								<field name="cost_name" readonly="1"/>
+									<field name="cost_qty" readonly="1"/>
+									<field name="cost_subtotal" readonly="1"/>
+									<field name="cost_currency" readonly="1"/>
+									<field name="cost_hrk" readonly="1"/>		
+    							</tree>
+    						</field>
+						</page>
+						<page string="Totals">
+							<group colspan="4" col="4" >					
+							<field name="total_cost" readonly="1"/>
+							<field name="total_weight" readonly="1"/>
+							<field name="total_pcs" readonly="1"/>
+							<field name="total_price" readonly="1"/>								
+							<field name="total_depc" readonly="1"/>	
+							</group>	
+						</page>
+					</notebook>	
+					<button string="Get data" type="object" name="populate_lines" />
+					<button string="Write data" type="object" name="write_changes" />			
+					<button string="Cancel" special="cancel"/>		   				
+    			</form>
+    		</field>
+    	</record>  
+    	
+    	<record id="dependant_cost_action" model="ir.actions.act_window">
+            <field name="name">Dependant cost</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.dep.cost</field>
+            <field name="view_mode">form</field>
+            <field name="auto_refresh" eval="1"/>
+            <field name="view_id" ref="account_invoice_dep_cost_calculation"/>
+         </record>  	
+    </data>
+</openerp>

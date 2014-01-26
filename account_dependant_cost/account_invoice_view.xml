@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    	<!-- .....PRODUCT..... -->
+        <record id="product_dep_cost_form_view" model="ir.ui.view">
+            <field name="name">product.dep.cost.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+	            <field name="sale_ok" position="before">
+	        		    <field name="is_accessory_cost" /> 
+	        		    <label for="is_accessory_cost"/>	
+	            </field>
+            </field>
+        </record>
+    	<!-- ACCOUNT INVOICE -->
+    	 	
+    	<record id="account_invoice_supplier_form_dep_cost" model="ir.ui.view" >
+			<field name="name">account_invoice_supplier_form_dep_cost</field>
+			<field name="model">account.invoice</field>
+			<field name="sequence" eval="66"/>
+			<field name="inherit_id" ref="account.invoice_supplier_form"/>
+			<field name="arch" type="xml">
+				<notebook position="inside">
+					<page string="Dependant cost" >
+						<button string="Distribute costs" type="object" name="dependant_cost_calculation"/>
+						<label for="dep_cost_type"/>
+						<field name="dep_cost_type" class="oe_inline" />
+						<group>
+							<field name="dep_cost" nolabel="1" domain="[('is_accessory_cost','=',True)]">
+								<tree string="Dependant cost" editable="top" >
+									<field name="partner_id" readonly="1" />
+									<field name="invoice_id" readonly="1" />
+									<field name="product_id" readonly="1"/>
+									<field name="currency" />								
+									<field name="price_subtotal" />								
+								</tree>
+							</field>							
+						</group>						
+						
+					</page>					
+				</notebook>
+    		</field>
+    	</record>
+ 
+    </data>
+</openerp>
