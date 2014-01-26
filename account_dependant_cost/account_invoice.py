@@ -54,6 +54,8 @@ class account_invoice(osv.Model):
                 }
     
     def dependant_cost_calculation(self, cr, uid, ids, context=None):
+        if len(self.browse(cr, uid, ids[0]).dep_cost)==0:
+            raise osv.except_osv('Error','No costs to calculate. Add some first!')
         view_ref = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'account_dependant_cost', 'account_invoice_dep_cost_calculation')
         view_id = view_ref and view_ref[1] or False,
         return {
