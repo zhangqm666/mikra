@@ -29,32 +29,31 @@ A module that adds:
     - intrastat codes
     - intrastat transaction types
     - intrastat reports
-    - dependant cost
+    
     
 This module gives the details of the goods traded between the countries of European Union. 
 candidate for Croatia Localization pack
     """,
     'author': 'DAJ MI 5',
     'website': 'http://www.dajmi5.com',
-    'depends': ['base', 
-                'product', 
-                'stock', 
-                'sale', 
-                'purchase',
-                'delivery'],
+    'depends': [
+        'base', 
+        'product', 
+        'stock', 
+        'sale', 
+        'purchase',
+        'delivery',
+        'account_dependant_cost',
+                ],
     'data': [
         'data/intrastat_countries_data.xml',
         'data/stock_incoterms.xml',  #nijre nuzno, samo je dodan xxx, mislio da cu uspjeti prevesti
         'data/intrastat.code.csv',
         'data/intrastat.transaction.type.csv',
         'intrastat_view.xml',
-        'account_invoice_view.xml',
-        'res_company_view.xml',
         'purchase_order_view.xml',
-        'delivery_view.xml',
         'stock_view.xml',
-        'product_view.xml',
-        #'l10n_hr_report_intrastat_view.xml'
+        'l10n_hr_intrastat_view.xml',
         #'report/intrastat_report.xml',
         'security/ir.model.access.csv',
             ],

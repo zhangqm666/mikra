@@ -26,15 +26,27 @@ from intrastat import default_transaction_type
 from jinja2.testsuite import res
 from datetime import datetime, time
 
+_VRSTE_PROMETA=[('1','Pomorski promet'),
+                ('2','Željeznički promet'),
+                ('3','Cestovni promet'),
+                ('4','Zračni promet'),
+                ('5','Poštanska pošiljka'),
+                ('6','Fiksne prometne instalacije'),
+                ('7','Promet kopnenim plovnim putevima'),
+                ('8','Vlastiti pogon')]
+
 class stock_picking(osv.osv):
     _name = "stock.picking"
     _inherit = "stock.picking"
+    
+   
     
     _columns = {
         'transaction_type_id': fields.many2one('intrastat.transaction.type', 'Transaction type'),
         'incoterm':fields.many2one('stock.incoterms','Incoterm'),
         'intrastat_exclude':fields.boolean('Exclude', help="Isključeno iz Intrastat izvještaja, ostavite isključeno unoliko niste sigurni što radite!"),
-        
+        'vrsta_prometa':fields.selection(_VRSTE_PROMETA,'Vrsta prometa',help="Potrebno radi intrastat izvještaja"),
+               
     }
     _defaults = {
         'transaction_type_id': default_transaction_type
@@ -45,7 +57,8 @@ class stock_picking_in(osv.osv):
     _columns = {
         'transaction_type_id': fields.many2one('intrastat.transaction.type', 'Transaction type'),
         'incoterm':fields.many2one('stock.incoterms','Incoterm'),
-        
+        'intrastat_exclude':fields.boolean('Exclude', help="Isključeno iz Intrastat izvještaja, ostavite isključeno unoliko niste sigurni što radite!"),
+        'vrsta_prometa':fields.selection(_VRSTE_PROMETA,'Vrsta prometa',help="Potrebno radi intrastat izvještaja"),
 
     }
     _defaults = {
@@ -56,7 +69,9 @@ class stock_picking_out(osv.osv):
     _inherit = 'stock.picking.out'
     _columns = {
         'transaction_type_id': fields.many2one('intrastat.transaction.type', 'Transaction type'),
-        'incoterm':fields.many2one('stock.incoterms','Incoterm')
+        'incoterm':fields.many2one('stock.incoterms','Incoterm'),
+        'intrastat_exclude':fields.boolean('Exclude', help="Isključeno iz Intrastat izvještaja, ostavite isključeno unoliko niste sigurni što radite!"),
+        'vrsta_prometa':fields.selection(_VRSTE_PROMETA,'Vrsta prometa',help="Potrebno radi intrastat izvještaja"),
     }
     _defaults = {
         'transaction_type_id': default_transaction_type

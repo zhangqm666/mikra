@@ -2,7 +2,7 @@
 ##############################################################################
 #    
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2012 Mentis d.o.o. (<http://www.mentis.si/openerp>).
+#    Copyright (C) 2012 DAJ MI 5 d.o.o. (<http://www.dajmi5.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,13 +19,11 @@
 #
 ##############################################################################
 
-import account_invoice
+
 import intrastat
-import res_company
 import purchase_order
-import delivery
 import stock
-import product
+import l10n_hr_intrastat
 
 
 #import l10n_hr_report_intrastat

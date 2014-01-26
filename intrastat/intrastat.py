@@ -70,6 +70,69 @@ class intrastat_code(osv.osv):
         'name': fields.char('Intrastat Code', size=16),
         'description': fields.text('Description'),
     }
+ 
+class delivery_carrier(osv.Model):
+    _inherit  = "delivery.carrier"
+    
+    _VRSTE_PROMETA=[('1','Pomorski promet'),
+                    ('2','Željeznički promet'),
+                    ('3','Cestovni promet'),
+                    ('4','Zračni promet'),
+                    ('5','Poštanska pošiljka'),
+                    ('6','Fiksne prometne instalacije'),
+                    ('7','Promet kopnenim plovnim putevima'),
+                    ('8','Vlastiti pogon')]
+    
+    _columns = {
+                'vrsta':fields.selection(_VRSTE_PROMETA,'Vrsta prometa',help="Potrebno radi intrastat izvještaja", required="True")
+                }
+class product_template(osv.osv):
+    _name = "product.template"
+    _inherit = "product.template"
+    _columns = {
+        'intrastat_id': fields.many2one('intrastat.code', 'Intrastat code'),
+        'country_origin':fields.many2one('res.country','Country origin', help="Country where product is produced"),
+               }
+ 
+class res_company(osv.Model):
+    _inherit = 'res.company'
+    _columns = {
+                'def_transaction_type':fields.many2one('intrastat.transaction.type','Transaction type', 
+                        help='Default transaction type for purchase and sales order, Important if you need intrastat reports')
+                }
+    
+    def ajde_popravi(self, cr, uid, ids, context=None):
+        #ovo samo da popravim krive unose i mičem odavde... ne koristiti 
+        po_obj = self.pool.get('purchase.order')
+        
+        po_ids = po_obj.search(cr, uid, [])
+        for po in po_obj.browse(cr, uid, po_ids):
+            amount = 0
+            if po.partner_id.country_id.code != 'HR':
+                if po.pricelist_id.id != 12 or po.amount_total ==0:
+                    for pol in po.order_line:
+                        pol.write({'price_unit':pol.product_id.nabavna_eur})
+                    po_vals = {'pricelist_id':12}
+                    po.write(po_vals)
+        
+        acc = self.pool.get('account.invoice')
+        acc_ids = acc.search(cr, uid, [('type','=','in_invoice')])
+        for ac in acc.browse(cr, uid, acc_ids):
+            amount = 0
+            if ac.partner_id.country_id.code != 'HR':
+                if ac.currency_id != 1 or ac.amount_total == 0:
+                    for line in ac.invoice_line:
+                        line.write({'price_unit':line.product_id.nabavna_eur})
+                    ac.write({'currency_id':1})
+        return True
 
 
+
+class account_invoice(osv.Model):
+    _inherit = 'account.invoice'
+    
+    _columns = {
+                'incoterm':fields.many2one('stock.incoterms','Incoterm'),            
+                }
+    
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
