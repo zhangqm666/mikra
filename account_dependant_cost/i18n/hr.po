@@ -1,0 +1,285 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* account_dependant_cost
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-26 22:57+0000\n"
+"PO-Revision-Date: 2014-01-27 00:06+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: account_dependant_cost
+#: selection:account.invoice,dep_cost_type:0
+msgid "Manual dist"
+msgstr "Ručna podjela"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,show_curr:0
+msgid "Show currency rate"
+msgstr "Prikaži tečaj"
+
+#. module: account_dependant_cost
+#: help:account.invoice.line,invoice_dep_ids:0
+msgid "Is depentant cost for these invoices"
+msgstr "Je zavisni trošak za ove račune"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.prod,prod_subtotal:0
+msgid "Price line"
+msgstr "Cijena stavke"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,cost_line:0
+msgid "Line ID"
+msgstr "ID retka"
+
+#. module: account_dependant_cost
+#: field:account.invoice.line,invoice_dep_ids:0
+msgid "For invoices"
+msgstr "Za račune"
+
+#. module: account_dependant_cost
+#: selection:account.dep.cost,cost_type:0
+msgid "Manual distribute"
+msgstr "Ručna podjela"
+
+#. module: account_dependant_cost
+#: model:ir.model,name:account_dependant_cost.model_account_dep_cost
+msgid "Calculate dependency cost"
+msgstr "Izračunaj zavisne troškove"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.prod,prod_weight:0
+msgid "Weight/Pc"
+msgstr "Masa/kom"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.prod,dep_cost_id:0
+#: field:account.dep.cost.prod,prod_line:0
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: account_dependant_cost
+#: constraint:product.template:0
+msgid "Error !"
+msgstr "Greška"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,cost_subtotal:0
+msgid "Price"
+msgstr "Cijena"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+msgid "Proizvodi"
+msgstr "Proizvodi"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,total_depc:0
+msgid "Dep.cost total"
+msgstr "Zavisni tr. ukupno"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,cost_type:0 field:account.invoice,dep_cost_type:0
+msgid "Dep.cost calculation"
+msgstr "Izračun zavisnog troška"
+
+#. module: account_dependant_cost
+#: code:addons/account_dependant_cost/account_invoice.py:36
+#, python-format
+msgid "Error :"
+msgstr "Greška !"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,curr_rate_amount:0
+msgid "Rate factor"
+msgstr "Tečaj"
+
+#. module: account_dependant_cost
+#: model:ir.model,name:account_dependant_cost.model_product_template
+msgid "Product Template"
+msgstr "Predložak proizvoda"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,total_pcs:0
+msgid "Total quantity"
+msgstr "Ukupna količina"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,cost_name:0
+#: field:account.dep.cost.prod,prod_name:0
+msgid "Cost product"
+msgstr "Proizvod troška"
+
+#. module: account_dependant_cost
+#: field:account.invoice.line,dep_cost_amount:0
+msgid "Amount of dep.cost"
+msgstr "Iznos zavisnog troška"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,total_weight:0
+msgid "Total product weight"
+msgstr "Ukupna težina proizvoda"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.prod,cost_amount:0 view:account.invoice:0
+#: model:ir.actions.act_window,name:account_dependant_cost.dependant_cost_action
+msgid "Dependant cost"
+msgstr "Zavisni trošak"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+msgid "Cancel"
+msgstr "Odustani"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0 field:account.dep.cost,cost_lines:0
+msgid "Costs"
+msgstr "Troškovi"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0 field:account.dep.cost,prod_lines:0
+msgid "Products"
+msgstr "Proizvodi"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,total_price:0
+msgid "Price total"
+msgstr "Ukupna cijena"
+
+#. module: account_dependant_cost
+#: selection:account.dep.cost,cost_type:0
+#: selection:account.invoice,dep_cost_type:0
+msgid "By quantity"
+msgstr "Po količini"
+
+#. module: account_dependant_cost
+#: field:account.invoice.line,is_accessory_cost:0
+msgid "Is cost"
+msgstr "Je trošak"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+msgid "Totals"
+msgstr "Totali"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,currency_rate:0
+msgid "Currency rate"
+msgstr "Tečajna lista"
+
+#. module: account_dependant_cost
+#: model:ir.model,name:account_dependant_cost.model_account_dep_cost_prod
+msgid "Products for calculation"
+msgstr "Proizvodi za izračun"
+
+#. module: account_dependant_cost
+#: help:account.dep.cost.prod,prod_subtotal:0
+msgid "Subtotal of invoice line"
+msgstr "Vrijednost stavke računa"
+
+#. module: account_dependant_cost
+#: code:addons/account_dependant_cost/account_invoice.py:36
+#, python-format
+msgid ""
+"The option 'Is accessory cost?' should only be activated on 'Service' "
+"products. You have activated this option for the product '%s' which is of "
+"type '%s'"
+msgstr ""
+"Opcija 'Trošak' bi se trebala primjeniti samo na proizvode tipa 'Usluga' "
+"aktiviračli ste ovu opciju na proizvodu '%s' koji je tipa '%s'"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,total_cost:0
+msgid "Cost total"
+msgstr "Ukupni trošak"
+
+#. module: account_dependant_cost
+#: selection:account.dep.cost,cost_type:0
+#: selection:account.invoice,dep_cost_type:0
+msgid "By price"
+msgstr "Po cijeni"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+msgid "Get data"
+msgstr "Dohvati podatke"
+
+#. module: account_dependant_cost
+#: model:ir.model,name:account_dependant_cost.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Stavka računa"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+msgid "Zavisni troskovi"
+msgstr "Zavisni troskovi"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,cost_qty:0
+#: field:account.dep.cost.prod,prod_qty:0
+msgid "Qty"
+msgstr "Kol"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,cost_currency:0
+#: field:account.dep.cost.prod,prod_currency:0
+#: field:account.invoice.line,currency:0
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+msgid "Write data"
+msgstr "Zapiši podatke"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,dep_cost_id:0
+msgid "Cost"
+msgstr "Trošak"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,invoice_id:0
+#: model:ir.model,name:account_dependant_cost.model_account_invoice
+msgid "Invoice"
+msgstr "Račun"
+
+#. module: account_dependant_cost
+#: selection:account.dep.cost,cost_type:0
+#: selection:account.invoice,dep_cost_type:0
+msgid "By weight"
+msgstr "Po težini"
+
+#. module: account_dependant_cost
+#: model:ir.model,name:account_dependant_cost.model_account_dep_cost_cost
+msgid "Costs for calculation"
+msgstr "Troškovi za izračun"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,cost_hrk:0
+#: field:account.dep.cost.prod,prod_hrk:0
+msgid "Price HRK"
+msgstr "Iznos HRK"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.prod,prod_hrk_kom:0
+msgid "Price HRK/pc"
+msgstr "HRK / kom"
+
+#. module: account_dependant_cost
+#: field:account.invoice.line,weight_net:0
+msgid "Weight netto"
+msgstr "Neto masa"
+
+#. module: account_dependant_cost
+#: view:account.invoice:0
+msgid "Distribute costs"
+msgstr "Razdijeli troškove"

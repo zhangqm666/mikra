@@ -1,0 +1,284 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* account_dependant_cost
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-26 23:07+0000\n"
+"PO-Revision-Date: 2014-01-26 23:07+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_dependant_cost
+#: selection:account.invoice,dep_cost_type:0
+msgid "Manual dist"
+msgstr "Manual dist"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,show_curr:0
+msgid "Show currency rate"
+msgstr "Show currency rate"
+
+#. module: account_dependant_cost
+#: help:account.invoice.line,invoice_dep_ids:0
+msgid "Is depentant cost for these invoices"
+msgstr "Is depentant cost for these invoices"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.prod,prod_subtotal:0
+msgid "Price line"
+msgstr "Price line"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,cost_line:0
+msgid "Line ID"
+msgstr "Line ID"
+
+#. module: account_dependant_cost
+#: field:account.invoice.line,invoice_dep_ids:0
+msgid "For invoices"
+msgstr "For invoices"
+
+#. module: account_dependant_cost
+#: selection:account.dep.cost,cost_type:0
+msgid "Manual distribute"
+msgstr "Manual distribute"
+
+#. module: account_dependant_cost
+#: model:ir.model,name:account_dependant_cost.model_account_dep_cost
+msgid "Calculate dependency cost"
+msgstr "Calculate dependency cost"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.prod,prod_weight:0
+msgid "Weight/Pc"
+msgstr "Weight/Pc"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.prod,dep_cost_id:0
+#: field:account.dep.cost.prod,prod_line:0
+msgid "Product"
+msgstr "Product"
+
+#. module: account_dependant_cost
+#: constraint:product.template:0
+msgid "Error !"
+msgstr "Error !"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,cost_subtotal:0
+msgid "Price"
+msgstr "Price"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+msgid "Proizvodi"
+msgstr "Proizvodi"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,total_depc:0
+msgid "Dep.cost total"
+msgstr "Dep.cost total"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,cost_type:0
+#: field:account.invoice,dep_cost_type:0
+msgid "Dep.cost calculation"
+msgstr "Dep.cost calculation"
+
+#. module: account_dependant_cost
+#: code:addons/account_dependant_cost/account_invoice.py:36
+#, python-format
+msgid "Error :"
+msgstr "Error :"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,curr_rate_amount:0
+msgid "Rate factor"
+msgstr "Rate factor"
+
+#. module: account_dependant_cost
+#: model:ir.model,name:account_dependant_cost.model_product_template
+msgid "Product Template"
+msgstr "Product Template"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,total_pcs:0
+msgid "Total quantity"
+msgstr "Total quantity"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,cost_name:0
+#: field:account.dep.cost.prod,prod_name:0
+msgid "Cost product"
+msgstr "Cost product"
+
+#. module: account_dependant_cost
+#: field:account.invoice.line,dep_cost_amount:0
+msgid "Amount of dep.cost"
+msgstr "Amount of dep.cost"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,total_weight:0
+msgid "Total product weight"
+msgstr "Total product weight"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.prod,cost_amount:0
+#: view:account.invoice:0
+#: model:ir.actions.act_window,name:account_dependant_cost.dependant_cost_action
+msgid "Dependant cost"
+msgstr "Dependant cost"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+msgid "Cancel"
+msgstr "Cancel"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+#: field:account.dep.cost,cost_lines:0
+msgid "Costs"
+msgstr "Costs"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+#: field:account.dep.cost,prod_lines:0
+msgid "Products"
+msgstr "Products"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,total_price:0
+msgid "Price total"
+msgstr "Price total"
+
+#. module: account_dependant_cost
+#: selection:account.dep.cost,cost_type:0
+#: selection:account.invoice,dep_cost_type:0
+msgid "By quantity"
+msgstr "By quantity"
+
+#. module: account_dependant_cost
+#: field:account.invoice.line,is_accessory_cost:0
+msgid "Is cost"
+msgstr "Is cost"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+msgid "Totals"
+msgstr "Totals"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,currency_rate:0
+msgid "Currency rate"
+msgstr "Currency rate"
+
+#. module: account_dependant_cost
+#: model:ir.model,name:account_dependant_cost.model_account_dep_cost_prod
+msgid "Products for calculation"
+msgstr "Products for calculation"
+
+#. module: account_dependant_cost
+#: help:account.dep.cost.prod,prod_subtotal:0
+msgid "Subtotal of invoice line"
+msgstr "Subtotal of invoice line"
+
+#. module: account_dependant_cost
+#: code:addons/account_dependant_cost/account_invoice.py:36
+#, python-format
+msgid "The option 'Is accessory cost?' should only be activated on 'Service' products. You have activated this option for the product '%s' which is of type '%s'"
+msgstr "The option 'Is accessory cost?' should only be activated on 'Service' products. You have activated this option for the product '%s' which is of type '%s'"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,total_cost:0
+msgid "Cost total"
+msgstr "Cost total"
+
+#. module: account_dependant_cost
+#: selection:account.dep.cost,cost_type:0
+#: selection:account.invoice,dep_cost_type:0
+msgid "By price"
+msgstr "By price"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+msgid "Get data"
+msgstr "Get data"
+
+#. module: account_dependant_cost
+#: model:ir.model,name:account_dependant_cost.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Invoice Line"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+msgid "Zavisni troskovi"
+msgstr "Zavisni troskovi"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,cost_qty:0
+#: field:account.dep.cost.prod,prod_qty:0
+msgid "Qty"
+msgstr "Qty"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,cost_currency:0
+#: field:account.dep.cost.prod,prod_currency:0
+#: field:account.invoice.line,currency:0
+msgid "Currency"
+msgstr "Currency"
+
+#. module: account_dependant_cost
+#: view:account.dep.cost:0
+msgid "Write data"
+msgstr "Write data"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,dep_cost_id:0
+msgid "Cost"
+msgstr "Cost"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost,invoice_id:0
+#: model:ir.model,name:account_dependant_cost.model_account_invoice
+msgid "Invoice"
+msgstr "Invoice"
+
+#. module: account_dependant_cost
+#: selection:account.dep.cost,cost_type:0
+#: selection:account.invoice,dep_cost_type:0
+msgid "By weight"
+msgstr "By weight"
+
+#. module: account_dependant_cost
+#: model:ir.model,name:account_dependant_cost.model_account_dep_cost_cost
+msgid "Costs for calculation"
+msgstr "Costs for calculation"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.cost,cost_hrk:0
+#: field:account.dep.cost.prod,prod_hrk:0
+msgid "Price HRK"
+msgstr "Price HRK"
+
+#. module: account_dependant_cost
+#: field:account.dep.cost.prod,prod_hrk_kom:0
+msgid "Price HRK/pc"
+msgstr "Price HRK/pc"
+
+#. module: account_dependant_cost
+#: field:account.invoice.line,weight_net:0
+msgid "Weight netto"
+msgstr "Weight netto"
+
+#. module: account_dependant_cost
+#: view:account.invoice:0
+msgid "Distribute costs"
+msgstr "Distribute costs"
+
