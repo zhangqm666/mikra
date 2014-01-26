@@ -27,7 +27,7 @@
 
 from osv import osv, fields
 from openerp.tools.translate import _
-import openerp.addons.decimal_precision as dp
+import decimal_precision as dp
 import psycopg2
 
 

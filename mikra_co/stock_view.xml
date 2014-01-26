@@ -28,8 +28,20 @@
                 </xpath>
             </field>
     </record>
-     -->
-    
+     
+	<record id="view_picking_in_form_mikra" model="ir.ui.view">
+            <field name="name">stock.picking.in.form.mikra</field>
+            <field name="model">stock.picking.in</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                
+                <xpath expr="/form/header//button[@name='%(stock.act_stock_return_picking)d']" position="after">
+                    <button name="allow_invoice" string="Omogući račun" type="object" attrs="{'invisible':[('invoice_state','!=','none')]}"/>
+                    
+                </xpath>
+            </field>
+    </record>    
+    -->
     <!-- DODANO U POSEBNI IZBORNIK MIKRA -->
     <record id="stock_move_mikra_form" model="ir.ui.view">
             <field name="name">stock_move_mikra_form</field>

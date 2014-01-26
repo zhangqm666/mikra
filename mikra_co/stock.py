@@ -29,7 +29,7 @@ from openerp.osv import fields, osv
 from openerp import netsvc
 from openerp import pooler
 from openerp.tools.translate import _
-import openerp.addons.decimal_precision as dp
+import decimal_precision as dp
 from openerp.osv.orm import browse_record, browse_null
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT, DATETIME_FORMATS_MAP
 
@@ -46,6 +46,9 @@ class stock_picking(osv.Model):
                 'sort_print':fields.selection(SORT_VRSTE,'Redosljed stavaka pri ispisu',
                                               help="Ostaviti prazno za ispis po redosljedu upisa stavaka ili izabrati željeni redosljed")
                 }
+    
+    
+    
     """
 
     def write(self, cr, uid, ids, vals, context=None):
@@ -66,4 +69,6 @@ class stock_picking(osv.Model):
         
         return  super(stock_move, self).write(cr, uid, ids, vals, context=context)
     """
+
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
