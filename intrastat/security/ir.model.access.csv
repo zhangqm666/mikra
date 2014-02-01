@@ -2,3 +2,7 @@
 "access_base_intrastat_code","Intrastat Code user","model_intrastat_code","base.group_user","1","1","0","0"
 "access_base_intrastat_trtype","Intrastat Transaction Type","model_intrastat_transaction_type","base.group_user","1","1","1","0"
 "access_all_instastat","Intrastat Transaction Type","model_intrastat","","1","1","1","0"
+"access_all_intra_l10n_hr","HR Intrastat report","model_l10n_hr_intrastat","stock.group_stock_manager","1","1","1","1"
+"access_all_intra_l10n_hr_line","HR Intrastat report_line","model_l10n_hr_intrastat_line","stock.group_stock_manager","1","1","1","1"
+"access_all_intra_preview","HR Intrastat _preview","model_intrastat_preview","stock.group_stock_manager","1","1","1","1"
+

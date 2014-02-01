@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- INTRASTAT IN PART -->
+        <record id="view_intrastat_in_tree" model="ir.ui.view">
+            <field name="name">intrastat.in.tree</field>
+            <field name="model">intrastat.in</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Intrastat in preview" create="false">
+					<field name="picking_id" invisible="1"/>
+					<field name="picking_name"/>
+					<field name="month"/>
+					<field name="year"/>
+					<field name="partner_id" invisible="1"/> 
+					<field name="country_code"/> 
+					<field name="transaction_type_id" />
+					<field name="invoiced_state" />
+					<field name="ura_id" invisible="1"/>
+					<field name="ura"/>
+					<field name="weight_net" />					
+					<field name="intrastat_id"/>
+					<field name="country_origin" />      				
+                </tree>
+            </field>
+        </record>
+        <record id="view_intrastat_in_form" model="ir.ui.view">
+            <field name="name">view.intrastat.in.form</field>
+            <field name="model">intrastat.in</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Intrastat line" >
+					<field name="month" readonly="1"/>
+					<field name="year" readonly="1"/>
+					<field name="picking_name" readonly="1"/>
+					<field name="picking_id"/>					
+					
+					<field name="partner_id"/>
+					<field name="country_code" readonly="1"/> 
+					<field name="invoiced_state" readonly="1"/>	
+					<field name="country_intrastat" readonly="1"/>
+					
+					<field name="ura_id" />			
+					<field name="ura" readonly="1" />
+					
+					<field name="product_id"/>
+					<field name="country_origin" readonly="1"/>					
+					<field name="intrastat_id" readonly="1"/>
+					<field name="weight_net" readonly="1"/>					
+					
+					<field name="transaction_type_id" readonly="1"/>           
+				</form>
+            </field>
+        </record>
+        <record id="view_intrastat_in_search" model="ir.ui.view">
+            <field name="name">intrastat.in.search</field>
+            <field name="model">intrastat.in</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Intrastat Data">
+                	<filter string="This Month" icon="terp-go-month" domain="[('month','=', time.strftime('%%m'))]"/>
+                    <separator orientation="vertical"/>
+                	<filter string="Nema Intrastat" name="no_intrastat_code" domain="[('intrastat_id','=',False)]"/>
+					<filter string="Nema težinu" name="no_weight" domain="[('weight_net','=',False)]" />
+                    <group string="Group by...">
+                        <filter string="Month" name="by_month" domain="[]" context="{'group_by':'month'}"/>
+						<filter string="Year" name="by_year" domain="[]" context="{'group_by':'year'}"/>
+						<filter string="Partner" name="by_partner" domain="[]" context="{'group_by':'partner_id'}"/>
+						<filter string="Zemlja" name="by_country" domain="[]" context="{'group_by':'country_code'}"/>					
+						<filter string="Proizvod" name="by_product" domain="[]" context="{'group_by':'product_id'}"/>
+						<filter string="Intrastat code" name="by_intrastat" domain="[]" context="{'group_by':'intrastat_id'}"/>                      
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="action_intrastat_in" model="ir.actions.act_window">
+            <field name="name">Intrastat preview</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">intrastat.in</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            
+        </record>
+        <menuitem name="Intrastat-ULAZ" action="action_intrastat_in" id="menu_intrastat_in"    
+                parent="menu_intrastat_mgmt" sequence="8" groups="stock.group_stock_manager"/>           	
+        
+        <!-- INTRASTAT OUT PART -->
+        <record id="view_intrastat_OUT_tree" model="ir.ui.view">
+            <field name="name">intrastat.OUT.tree</field>
+            <field name="model">intrastat.OUT</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Intrastat out preview" create="false">
+					<field name="picking_id" invisible="1"/>
+					<field name="picking_name"/>
+					<field name="month"/>
+					<field name="year"/>
+					<field name="partner_id" invisible="1"/> 
+					<field name="country_code"/> 
+					<field name="transaction_type_id" />
+					<field name="invoiced_state" />
+					<field name="ira_id" invisible="1"/>
+					<field name="ira"/>
+					<field name="weight_net" />					
+					<field name="intrastat_id"/>
+					<field name="country_origin" />      				
+                </tree>
+            </field>
+        </record>
+        <record id="view_intrastat_out_form" model="ir.ui.view">
+            <field name="name">view.intrastat.out.form</field>
+            <field name="model">intrastat.out</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Intrastat line" >
+					<field name="month" readonly="1"/>
+					<field name="year" readonly="1"/>
+					<field name="picking_name" readonly="1"/>
+					<field name="picking_id"/>					
+					
+					<field name="partner_id"/>
+					<field name="country_code" readonly="1"/> 
+					<field name="invoiced_state" readonly="1"/>	
+					<field name="country_intrastat" readonly="1"/>
+					
+					<field name="ira_id" />			
+					<field name="ira" readonly="1" />
+					
+					<field name="product_id"/>
+					<field name="country_origin" readonly="1"/>					
+					<field name="intrastat_id" readonly="1"/>
+					<field name="weight_net" readonly="1"/>					
+					
+					<field name="transaction_type_id" readonly="1"/>           
+				</form>
+            </field>
+        </record>
+        <record id="view_intrastat_out_search" model="ir.ui.view">
+            <field name="name">intrastat.out.search</field>
+            <field name="model">intrastat.out</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Intrastat Data">
+                	<filter string="This Month" icon="terp-go-month" domain="[('month','=', time.strftime('%%m'))]"/>
+                    <separator orientation="vertical"/>
+                	<filter string="Nema Intrastat" name="no_intrastat_code" domain="[('intrastat_id','=',False)]"/>
+					<filter string="Nema težinu" name="no_weight" domain="[('weight_net','=',False)]" />
+                    <group string="Group by...">
+                        <filter string="Month" name="by_month" domain="[]" context="{'group_by':'month'}"/>
+						<filter string="Year" name="by_year" domain="[]" context="{'group_by':'year'}"/>
+						<filter string="Partner" name="by_partner" domain="[]" context="{'group_by':'partner_id'}"/>
+						<filter string="Zemlja" name="by_country" domain="[]" context="{'group_by':'country_code'}"/>					
+						<filter string="Proizvod" name="by_product" domain="[]" context="{'group_by':'product_id'}"/>
+						<filter string="Intrastat code" name="by_intrastat" domain="[]" context="{'group_by':'intrastat_id'}"/>                      
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="action_intrastat_out" model="ir.actions.act_window">
+            <field name="name">Intrastat out preview</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">intrastat.out</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            
+        </record>
+        <menuitem name="Intrastat-IZLAZ" action="action_intrastat_out" id="menu_intrastat_out"     
+                parent="menu_intrastat_mgmt" sequence="9" groups="stock.group_stock_manager"/>           	      	       	
+   	</data>
+</openerp>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data><!-- .....INTRASTAT REPORT..... -->
+    <data>
+    	<!--INTRASTAT REPORT MENU -->
+		<menuitem id="menu_intrastat_mgmt" name="Intrastat" parent="stock.menu_stock_root" sequence="1" groups="stock.group_stock_manager"/>
+		<!--CROATIAN REPORT SHEET -->	    	
         <record id="view_l10n_hr_intrastat_tree" model="ir.ui.view">
             <field name="name">l10n.hr.intrastat.view</field>
             <field name="model">l10n.hr.intrastat</field>
@@ -21,22 +24,25 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Intrastat Data" version="7.0">
-                	<header>
+                	<header>	
+                		<button string="Preuzni podatke" type="object" name="fill_data_wiz"  
+								attrs="{'invisible':[('period_id','=',False)]}" />     	           		
 						<field name="state" widget="statusbar" />
-                	</header>
-                	<sheet>
-	                	<group>
+					</header>
+					<sheet>	
+						<h1>			
+                			<field name="name" readonly="1"/>
+						</h1>                		
+	                	<group colspan="4" col="4">
 		                	<field name="period_id" />
-							<field name="year"/>
-							<field name="month"/>
+							<field name="lines_in" />		                	
 							<field name="vrsta" />               	
-		             		<field name="lines_in" />
 							<field name="lines_out" />             		
-							<field name="evid_broj" />
-							<field name="date" />             		
+							<field name="date" />
+							<field name="evid_broj" />								             		
 	               		</group>
 	               		<field name="line_ids" nolabel="1" />
-               		</sheet>	
+					</sheet>	               		
                 </form>
             </field>
         </record>
@@ -68,9 +74,8 @@
             <field name="search_view_id" ref="view_intrastat_search"/>
             -->
         </record>
-		<menuitem id="menu_intrastat_mgmt" name="Intrastat" parent="stock.menu_stock_root" sequence="1"/>
-        <menuitem name="Intrastat-RH" action="action_l10n_hr_intrastat_tree_all" id="menu_l10n_hr_intrastat_all"   
-                parent="menu_intrastat_mgmt" sequence="6"/>
+		<menuitem id="menu_l10n_hr_intrastat_all" name="Intrastat-RH" action="action_l10n_hr_intrastat_tree_all"   
+                parent="menu_intrastat_mgmt" sequence="6" groups="stock.group_stock_manager"/>
         
          <record id="view_l10n_hr_intrastat_line_tree" model="ir.ui.view">
             <field name="name">l10n.hr.intrastat.line.view</field>
@@ -78,10 +83,10 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Intrastat line" >
-					<field name="report_id"/>
-					<field name="type"/>
-					<field name="redni_br" />					
-					<field name="product_id" />               	
+					<field name="report_id" invisible="1"/>
+					<field name="type" invisible="1"/>
+					<field name="redni_br" invisible="1"/>					
+					<field name="product_id" invisible="1" />               	
              		<field name="sifra_robe" />
 					<field name="opis_robe" />
 					<field name="porijeklo_robe" />
@@ -97,7 +102,6 @@
         </record>       	
         
         <!-- INTRASTAT PREVIEW -->
-        
         <record id="view_intrastat_preview_tree" model="ir.ui.view">
             <field name="name">intrastat.preview.tree.view</field>
             <field name="model">intrastat.preview</field>
@@ -180,9 +184,10 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{}</field>
-            
         </record>
-        <menuitem name="Intrastat-Preview" action="action_intrastat_preview_all" id="menu_intrastat_preview"   
-                parent="menu_intrastat_mgmt" sequence="7"/>       	       	
+        <menuitem name="Intrastat-Preview" action="action_intrastat_preview_all" id="menu_intrastat_preview"    
+                parent="menu_intrastat_mgmt" sequence="7" groups="stock.group_stock_manager"/>
+         
+               	      	       	
    	</data>
 </openerp>

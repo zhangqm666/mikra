@@ -1,0 +1,3 @@
+zavisni troskovi
+sql za report
+generirajne xml-a

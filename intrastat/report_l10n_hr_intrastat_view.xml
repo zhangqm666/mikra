@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data><!-- .....INTRASTAT REPORT..... -->
+        <record id="view_intrastat_tree" model="ir.ui.view">
+            <field name="name">intrastat.view</field>
+            <field name="model">intrastat</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Intrastat Data" editable="bottom">
+                	<field name="id"/>
+					<field name="picking_name"/>
+					 <field name="intrastat_id"/>               	
+                	
+                	<field name="intrastat_id"/>
+				<!--                	
+               		<field name="intrastat_name"/>
+				-->				
+					<field name="product_id"/>               		
+					<field name="partner_id" />               		
+               		<field name="country_code"/>
+               		<field name="country_intrastat"/>
+               		<field name="transaction_type_id"/>
+                	<!--
+                    <field name="weight"/>
+                    <field name="value"/>
+                    <field name="date"/>
+               			-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_intrastat_search" model="ir.ui.view">
+            <field name="name">intrastat.search</field>
+            <field name="model">intrastat</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Intrastat Data">
+                    <group>
+                    	<filter string="This Month" icon="terp-go-month" domain="[('month','=', time.strftime('%%m'))]"/>
+                        <separator orientation="vertical"/>
+                        <field name="year"/>
+                        <field name="month"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_intrastat_tree_all" model="ir.actions.act_window">
+            <field name="name">Intrastat</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">intrastat</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{"search_default_year":time.strftime('%Y')}</field>
+            
+            <field name="search_view_id" ref="view_intrastat_search"/>
+        </record>
+		<menuitem id="menu_intrastat_mgmt" name="Intrastat" parent="stock.menu_stock_root" sequence="1"/>
+        <menuitem name="Intrastat" action="action_intrastat_tree_all" id="menu_report_intrastat_all"   
+                parent="menu_intrastat_mgmt" sequence="6"/>
+        
+   	</data>
+</openerp>

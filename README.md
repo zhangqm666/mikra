@@ -1,4 +1,4 @@
 mikra
 =====
 
-Openerp customizations for MIKRA
+Openerp customizations for MIKRA, ZGBP

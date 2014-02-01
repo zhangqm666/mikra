@@ -23,6 +23,7 @@ from osv import osv, fields
 from tools.sql import drop_view_if_exists
 from decimal_precision import decimal_precision as dp
 import time
+from datetime import datetime, date
 
 
 
@@ -45,7 +46,6 @@ class l10n_hr_intrastat(osv.Model):
                                           ('04','April'), ('05','May'), ('06','June'),
                                           ('07','July'), ('08','August'),('09','September'), 
                                           ('10','October'), ('11','November'), ('12','December')],'Month',),
-                
                 'vrsta':fields.selection([('I','Izvorni obrazac'),
                                           ('N','Nadomjesni obrazac'),
                                           ('B','Brisanje prethodno dostavljenog obrasca'),
@@ -69,9 +69,39 @@ class l10n_hr_intrastat(osv.Model):
             raise osv.except_osv('Greška','Morate odabrati period')
         p_start = izv.period_id.date_start
         p_stop = izv.period_id.date_stop
-        type='in'
         
-        return res
+        sp = self.pool.get('stock.picking')
+        sp_ids = sp.search(cr, uid, ['&',('date_done','>=',p_start),('date_done','<=',p_stop)])
+        line = []
+        for l in izv.line_ids:
+            line.append((2,l.id))
+        for p in sp.browse(cr, uid, sp_ids):
+            type =False
+            if p.purchase_id: type ='1'
+            elif p.sale_id:   type ='2'
+                         
+            
+            
+            values = {
+                      'type': type,
+                      'product_id':p.product_id.id,
+                      'sifra_robe':p.product_id.product_tmpl_id.intrastat_id.name,
+                      'opis_robe':p.product_id.name,
+                      'porijeklo_robe':p.product_id.country_origin.code or False,
+                      'neto_masa':p.product_id.weight_net or 0.000,
+                      'zemlja':p.partner_id.country_id.code or False,
+                      }
+            line.append((0,0, values))
+        period = izv.period_id.name
+        name = izv.vrsta + ' obrazac za ' + period #
+        name += ' (' +datetime.strftime(datetime.now(),"%d.%m.%Y.") + ')'
+        vals = {
+                'date':datetime.now(),
+                'name':name,
+                'year':izv.period_id.date_start[:4],
+                'month':izv.period_id.date_start[5:][:2],
+                'line_ids':line}
+        return izv.write(vals)
 
 class l10n_hr_intrastat_line(osv.Model):
     _name='l10n.hr.intrastat.line'
@@ -82,7 +112,7 @@ class l10n_hr_intrastat_line(osv.Model):
                 'type':fields.selection([('1','Primitak'),('2','otprema')],'Tok robe'),
                 'redni_br':fields.integer('Redni broj'),
                 'product_id':fields.many2one('product.product','Proizvod'),
-                'sifra_robe':fields.char("Intrastat code", size=8),
+                'sifra_robe':fields.char("Intrastat code", size=10),
                 'opis_robe':fields.char('Opis robe', size=256),
                 'porijeklo_robe':fields.char("Zemlja porijekla robe", size=2),
                 'neto_masa':fields.float("Netto masa", digits=(16,3)),
@@ -95,6 +125,11 @@ class l10n_hr_intrastat_line(osv.Model):
                 }
 
 
+
+
+##############################################################################
+#########  AL IN ONE : TO BE REMOVED !
+##############################################################################
 class intrastat_preview(osv.AbstractModel):
     _name="intrastat.preview"
     _description=" Intrastat data prewiew"

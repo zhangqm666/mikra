@@ -121,6 +121,7 @@ class account_invoice(orm.Model):
                     invoice_infos['origin'] = (invoice_infos['origin'] or '') + ' ' + account_invoice.origin
                     origins.add(account_invoice.origin)
                 if account_invoice.reference and account_invoice.reference not in client_refs:
+                    #TODO: ako je vec upisana netreba opet i opet i opet...
                     invoice_infos['reference'] = (invoice_infos['reference'] or '') + (' %s' % (account_invoice.reference,))
                     client_refs.add(account_invoice.reference)
 
