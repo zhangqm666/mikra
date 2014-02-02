@@ -24,10 +24,14 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Intrastat Data" version="7.0">
-                	<header>	
+                	<header>
+                		<div>	
                 		<button string="Preuzni podatke" type="object" name="fill_data_wiz"  
-								attrs="{'invisible':[('period_id','=',False)]}" />     	           		
+								attrs="{'invisible':[('period_id','=',False)]}" /> 
+						<button string="Export XML" type="object" name="export_to_xml"  
+								attrs="{'invisible':[('period_id','=',False)]}" />         	           		
 						<field name="state" widget="statusbar" />
+						</div>
 					</header>
 					<sheet>	
 						<h1>			
@@ -41,7 +45,7 @@
 							<field name="date" />
 							<field name="evid_broj" />								             		
 	               		</group>
-	               		<field name="line_ids" nolabel="1" />
+	               		<field name="line_ids" toolbar="1" nolabel="1" context="{'group_by':'type'}" />
 					</sheet>	               		
                 </form>
             </field>
@@ -99,8 +103,23 @@
                		<field name="stat_vrijedi" />	
                 </tree>
             </field>
-        </record>       	
-        
+        </record>
+        <record id="view_l10n_hr_intrastat_line_search" model="ir.ui.view">
+            <field name="name">l10n.intrastat.line.search</field>
+            <field name="model">l10n.hr.intrastat.line</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Intrastat line">
+                	<filter string="This Month" icon="terp-go-month" domain="[('month','=', time.strftime('%%m'))]"/>
+                    <separator orientation="vertical"/>
+                	<filter string="Nema Intrastat" name="no_intrastat_code" domain="[('sifra_robe','=',False)]"/>
+					<filter string="Nema težinu" name="no_weight" domain="[('neto_masa','=',False)]" />
+                    <group string="Group by...">
+                        <filter string="Type" name="by_type" domain="[]" context="{'group_by':'type'}"/>     	
+        			</group>
+        		</search>
+        	</field>
+        </record>
         <!-- INTRASTAT PREVIEW -->
         <record id="view_intrastat_preview_tree" model="ir.ui.view">
             <field name="name">intrastat.preview.tree.view</field>
