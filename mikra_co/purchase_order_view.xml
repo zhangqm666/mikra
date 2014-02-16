@@ -1,5 +1,13 @@
 <openerp>
 	<data>
+		<report auto="False" id="purchase.report_purchase_quotation" model="purchase.order" 
+                name="purchase.quotation" rml="mikra_co/report/request_quotation.rml"
+                string="Request for Quotation"/>
+       <!-- 
+       <report auto="False" id="purchase.report_purchase_order" model="purchase.order"
+                name="purchase.order" rml="purchase/report/order.rml"
+                usage="default" string="Purchase Order"/>
+                	-->
 		<record id="view_purchase_order_line_sort_inherit" model="ir.ui.view" >
 			<field name="name">view.purchase.order.line.sort.inherit</field>
 			<field name="model">purchase.order</field>

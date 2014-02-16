@@ -114,24 +114,12 @@
   <pto_header>
     <blockTable colWidths="181.0,70.0,80.0,70.0,50.0,85.0" repeatRows="1" style="Table4">
       <tr>
-        <td>
-          <para style="terp_tblheader_Details"><b>Opis</b></para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Centre"><b>Porez</b></para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right"><b>količina</b></para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right"><b>Jed.cj.</b></para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Centre"><b>Rabat.(%)</b></para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right"><b>Cijena</b></para>
-        </td>
+        <td><para style="terp_tblheader_Details"><b>Opis</b></para></td>
+        <td><para style="terp_tblheader_Details_Centre"><b>Porez</b></para></td>
+        <td><para style="terp_tblheader_Details_Right"><b>količina</b></para></td>
+        <td><para style="terp_tblheader_Details_Right"><b>Jed.cj.</b></para></td>
+        <td><para style="terp_tblheader_Details_Centre"><b>Rabat.(%)</b></para></td>
+        <td><para style="terp_tblheader_Details_Right"><b>Cijena</b></para></td>
       </tr>
     </blockTable>
   </pto_header>
@@ -178,144 +166,73 @@
     
    
    
-    <para style="terp_default_8">
-      <font color="white"> </font>
-    </para>
-    <!--   <blockTable colWidths="181.0,70.0,80.0,70.0,50.0,85.0" repeatRows="1" style="Table4">  -->
-    <blockTable colWidths="251.0,80.0,70.0,50.0,85.0" repeatRows="1" style="Table4">
+    <para style="terp_default_8"><font color="white"> </font></para>
+    <para> <seqReset/> </para>
+    <blockTable colWidths="30,221,80,70,50,85" repeatRows="1" style="Table4">
       <tr>
-        <td>
-          <para style="terp_tblheader_Details"><b>Opis</b></para>
-        </td>
+      	<td><para style="terp_tblheader_Details">RB</para></td>
+        <td><para style="terp_tblheader_Details"><b>Opis</b></para></td>
         <!--
-        <td>
-          <para style="terp_tblheader_Details_Centre"><b>Porez</b></para>
-        </td>
+        <td><para style="terp_tblheader_Details_Centre"><b>Porez</b></para></td>
         -->
-        <td>
-          <para style="terp_tblheader_Details_Right"><b>kol.</b></para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right"><b>Jed.cj.</b></para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Centre"><b>[[not show_discount(user.id) and removeParentNode('para') ]]Rabat(%)</b></para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right"><b>Cijena</b></para>
-        </td>
+        <td><para style="terp_tblheader_Details_Right"><b>kol.</b></para></td>
+        <td><para style="terp_tblheader_Details_Right"><b>Jed.cj.</b></para></td>
+        <td><para style="terp_tblheader_Details_Centre"><b>[[not show_discount(user.id) and removeParentNode('para') ]]Rabat(%)</b></para></td>
+        <td><para style="terp_tblheader_Details_Right"><b>Cijena</b></para></td>
       </tr>
     </blockTable>
     <section>
-      <!-- original <para style="terp_default_1">[[repeatIn(sort_by_name(o.order_line),'line')]]</para> -->
       <para style="terp_default_1">[[repeatIn(sortiraj(o.order_line,o.sort_print),'line')]]</para>
-      
-      
       <!-- original <blockTable colWidths="180.0,70.0,80.0,70.0,50.0,85.0" style="Table5"> -->
-      <blockTable colWidths="250.0,80.0,70.0,50.0,85.0" style="Table5">
+      <blockTable colWidths="30,221,80,70,50,85" style="Table5">
         <tr>
-          <td>
-            <para style="terp_default_9">[[ format(line.name) ]] </para>
-          </td>
+          <td><para style="terp_default_9"><seq/></para></td>
+          <td><para style="terp_default_9">[[ format(line.name) ]] </para></td>
           <!--
-          <td>
-            <para style="terp_default_Centre_9">[[ ', '.join(map(lambda x: x.name, line.tax_id)) ]]</para>
-          </td>
+          <td><para style="terp_default_Centre_9">[[ ', '.join(map(lambda x: x.name, line.tax_id)) ]]</para></td>
           -->
-          <td>
-            <para style="terp_default_Right_9">[[ formatLang(line.product_uos and line.product_uos_qty or line.product_uom_qty) ]]</para>
-          </td>
-          <td>
-            <para style="terp_default_Right_9">[[ formatLang(line.price_unit , digits=get_digits(dp='Product Price'))]]</para>
-          </td>
-          <td>
-            <para style="terp_default_Centre_9">[[show_discount(user.id) and formatLang(line.discount, digits=get_digits(dp='Discount')) or '']]</para>
-          </td>
-          <td>
-            <para style="terp_default_Right_9">[[ formatLang(line.price_subtotal, digits=get_digits(dp='Account'), currency_obj=o.pricelist_id.currency_id) ]] </para>
-          </td>
+          <td><para style="terp_default_Right_9">[[ formatLang(line.product_uos and line.product_uos_qty or line.product_uom_qty) ]]</para></td>
+          <td><para style="terp_default_Right_9">[[ formatLang(line.price_unit , digits=get_digits(dp='Product Price'))]]</para></td>
+          <td><para style="terp_default_Centre_9">[[show_discount(user.id) and formatLang(line.discount, digits=get_digits(dp='Discount')) or '']]</para></td>
+          <td><para style="terp_default_Right_9">[[ formatLang(line.price_subtotal, digits=get_digits(dp='Account'), currency_obj=o.pricelist_id.currency_id) ]] </para></td>
         </tr>
       </blockTable>
     </section>
     <blockTable colWidths="350.0,91.0,93.0" style="Table6">
       <tr>
-        <td>
-          <para style="terp_default_9"> <font color="white"> </font> </para>
-        </td>
-        <td>
-          <para style="terp_default_9">Vrijednost robe :</para>
-        </td>
-        <td>
-          <para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
-        </td>
+        <td><para style="terp_default_9"> <font color="white"> </font> </para></td>
+        <td><para style="terp_default_9">Vrijednost robe :</para></td>
+        <td><para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para></td>
       </tr>
       
       <!-- additional discount addition -->
       <tr>
-        <td>
-          <para style="terp_default_9"> <font color="white"> </font> </para>
-        </td>
-        <td>
-          <para style="terp_default_9">[[ o.add_disc or removeParentNode('tr') ]]% popust :</para>
-        </td>
-        <td>
-          <para style="terp_default_Right_9">[[ formatLang(o.add_disc_amt, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
-        </td>
+        <td><para style="terp_default_9"> <font color="white"> </font> </para></td>
+        <td><para style="terp_default_9">[[ o.add_disc or removeParentNode('tr') ]]% popust :</para></td>
+        <td><para style="terp_default_Right_9">[[ formatLang(o.add_disc_amt, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para></td>
       </tr>
       <tr>
-        <td>
-          <para style="terp_default_9"> <font color="white"> </font> </para>
-        </td>
-        <td>
-          <para style="terp_default_9">Vrijednost netto :</para>
-        </td>
-        <td>
-          <para style="terp_default_Right_9">[[ o.add_disc and formatLang(o.amount_net, dp='Account', currency_obj=o.pricelist_id.currency_id) or removeParentNode('tr') ]]</para>
-        </td>
+        <td><para style="terp_default_9"> <font color="white"> </font> </para></td>
+        <td><para style="terp_default_9">Vrijednost netto :</para></td>
+        <td><para style="terp_default_Right_9">[[ o.add_disc and formatLang(o.amount_net, dp='Account', currency_obj=o.pricelist_id.currency_id) or removeParentNode('tr') ]]</para></td>
       </tr>
       
       
       <tr>
-        <td>
-          <para style="terp_default_9">
-            <font color="white"> </font>
-          </para>
-        </td>
-        <td>
-          <para style="terp_default_9">Iznos poreza :</para>
-        </td>
-        <td>
-          <para style="terp_default_Right_9">[[ formatLang(o.amount_tax, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para>
-        </td>
+        <td><para style="terp_default_9"><font color="white"> </font></para></td>
+        <td><para style="terp_default_9">Iznos poreza :</para></td>
+        <td><para style="terp_default_Right_9">[[ formatLang(o.amount_tax, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</para></td>
       </tr>
       <tr>
-        <td>
-          <para style="terp_default_9">
-            <font color="white"> </font>
-          </para>
-        </td>
-        <td>
-          <para style="terp_default_Bold_9"><b>Ukupni iznos :</b></para>
-        </td>
-        <td>
-          <para style="terp_default_Right_9_Bold"><b>[[ formatLang(o.amount_total, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</b></para>
-        </td>
+        <td><para style="terp_default_9"><font color="white"> </font></para></td>
+        <td><para style="terp_default_Bold_9"><b>Ukupni iznos :</b></para></td>
+        <td><para style="terp_default_Right_9_Bold"><b>[[ formatLang(o.amount_total, dp='Account', currency_obj=o.pricelist_id.currency_id) ]]</b></para></td>
       </tr>
     </blockTable>
     <para style="terp_default_8">
       <font color="white"> </font>
     </para>
-    <para style="terp_default_9">[[ format(o.note or '') ]]</para>
-    <blockTable colWidths="533.0" style="Table7">
-      <tr>
-        <td>
-          <para style="terp_default_9">[[ format(o.payment_term and o.payment_term.note or (o.partner_id.property_payment_term and o.partner_id.property_payment_term.note or '')) ]]</para>
-        </td>
-      </tr>
-    </blockTable>
-    <para style="terp_default_8">
-      <font color="white"> </font>
-    </para>
+    <para style="terp_default_9">[[ o.note or '' ]]</para>
   </pto>
   </story>
 </document>

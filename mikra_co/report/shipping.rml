@@ -60,6 +60,7 @@
       <lineStyle kind="LINEBELOW" colorName="#666666" start="0,-1" stop="0,-1"/>
       <lineStyle kind="LINEBELOW" colorName="#666666" start="1,-1" stop="1,-1"/>
       <lineStyle kind="LINEBELOW" colorName="#666666" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#666666" start="3,-1" stop="3,-1"/>
     </blockTableStyle>
     <blockTableStyle id="Table4">
       <blockAlignment value="LEFT"/>
@@ -67,6 +68,7 @@
       <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="0,-1" stop="0,-1"/>
       <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="1,-1" stop="1,-1"/>
       <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#e6e6e6" start="3,-1" stop="3,-1"/>
     </blockTableStyle>
     <initialize>
       <paraStyle name="all" alignment="justify"/>
@@ -109,22 +111,14 @@
   <pto_header>
     <blockTable colWidths="370.0,85.0,82.0" repeatRows="1" style="Table3">
       <tr>
-        <td>
-          <para style="terp_tblheader_Details">Description</para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Centre">Lot</para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right">Quantity</para>
-        </td>
+        <td><para style="terp_tblheader_Details">Description</para></td>
+        <td><para style="terp_tblheader_Details_Centre">Lot</para></td>
+        <td><para style="terp_tblheader_Details_Right">Quantity</para></td>
       </tr>
     </blockTable>
   </pto_header>
     <para style="terp_default_9">[[repeatIn(objects,'o')]]</para>
-    <para style="terp_default_8">
-      <font color="white"> </font>
-    </para>
+    <para style="terp_default_8"><font color="white"> </font></para>
 
     <blockTable colWidths="287.0,254.0" repeatRows="1" style="Tableau1">
       <tr>
@@ -151,39 +145,26 @@
         </td>
       </tr>
     </blockTable>
-   
     <para style="terp_default_8">  <font color="white"> </font>  </para>
-    
-    <para style="Standard">
-      <font color="white"> </font>
-    </para>
-    <blockTable colWidths="370.0,85.0,82.0" repeatRows="1" style="Table3">
+    <para style="Standard"> <font color="white"> </font> </para>
+    <para> <seqReset/> </para>
+    <blockTable colWidths="30,340,85,83" repeatRows="1" style="Table3">
       <tr>
-        <td>
-          <para style="terp_tblheader_Details">Opis stavke</para>
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Centre"></para>
-          <!-- <para style="terp_tblheader_Details_Centre">Lot</para> -->
-        </td>
-        <td>
-          <para style="terp_tblheader_Details_Right">Količina</para>
-        </td>
+      	<td><para style="terp_tblheader_Details">RB</para></td>
+        <td><para style="terp_tblheader_Details">Opis stavke</para></td>
+        <td><para style="terp_tblheader_Details_Centre"></para></td>
+        <td><para style="terp_tblheader_Details_Right">Količina</para></td>
       </tr>
     </blockTable>
     <section>
       <para style="terp_default_1">[[repeatIn(sort_by_name(o.move_lines),'line')]]</para>
-      <blockTable colWidths="370.0,85.0,83.0" style="Table4">
+      <blockTable colWidths="30,340,85,83" style="Table4">
         <tr>
-          <td>
-            <para style="terp_default_9">[[line.product_id.code ]] [[ line.product_id and line.product_id.name or '']]</para>
-          </td>
-          <td>
-            <para style="terp_default_Centre_9">[[ (line.prodlot_id and (line.prodlot_id.name + (line.prodlot_id.ref and ('/' + line.prodlot_id.ref) or ''))) or ' ' ]]</para>
-          </td>
-          <td>
-            <para style="terp_default_Right_9">[[ formatLang(line.product_qty) ]]</para>
-          </td>
+          <td><para style="terp_default_Centre_9"><seq/></para></td>
+          
+          <td><para style="terp_default_9">[[line.product_id.code ]]-[[ line.product_id and line.product_id.name or '']]</para></td>
+          <td><para style="terp_default_Centre_9">[[ (line.prodlot_id and (line.prodlot_id.name + (line.prodlot_id.ref and ('/' + line.prodlot_id.ref) or ''))) or ' ' ]]</para></td>
+          <td><para style="terp_default_Right_9">[[ formatLang(line.product_qty) ]]</para></td>
         </tr>
       </blockTable>
       <para style="terp_default_1"><font color="white"></font>

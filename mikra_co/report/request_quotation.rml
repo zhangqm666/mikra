@@ -67,9 +67,7 @@
           <para style="terp_default_9">Fax: [[ (order.partner_id and order.partner_id.fax) or removeParentNode('para') ]]</para>
           <para style="P1">TVA: [[ (order.partner_id and order.partner_id.vat) or removeParentNode('para') ]]</para>
         </td>
-         <td>
-          <para style="terp_default_9"> <font color="white"> </font> </para>
-        </td>
+         <td><para style="terp_default_9"> <font color="white"> </font> </para></td>
         <td>
           <para style="terp_default_Bold_12"><b>Order : [[order.name]]</b></para>
            <para style="terp_default_9"> <font color="white"> </font> </para>
@@ -78,54 +76,33 @@
         
       </tr>
     </blockTable>
-    <para style="Standard">
-      <font color="white"> </font>
-    </para>
-    
-    <para style="terp_default_8">
-      <font color="white"> </font>
-    </para>
-    <blockTable colWidths="460.0,61.0" repeatRows="1" style="Table_Product_Header_Title">
+    <para style="Standard"><font color="white"> </font> </para>
+    <para style="terp_default_8"><font color="white"> </font></para>
+     
+     <para> <seqReset/> </para>
+    <blockTable colWidths="30,430,61" repeatRows="1" style="Table_Product_Header_Title">
       <tr>
-        <td>
-          <para style="terp_tblheader_Details"><b>Description</b></para>
-        </td>
-        <td>
-          <para style="terp_tblheader_right"><b>Qty</b></para>
-        </td>
-      </tr>
+      	<td><para style="terp_tblheader_Details"><b>Nr.</b></para></td>
+        <td><para style="terp_tblheader_Details"><b>Description</b></para></td>
+        <td><para style="terp_tblheader_right"><b>Qty</b></para></td></tr>
     </blockTable>
     <section>
+    	
       <para style="terp_default_9">[[ repeatIn(sort_by_name(order.order_line),'order_line') ]]</para>
-      <blockTable colWidths="460,61.0" style="Table_Product_Line">
+      <blockTable colWidths="30,430,61" style="Table_Product_Line">
         <tr>
-          <td>
-            <para style="terp_default_9">[[ order_line.name ]]</para>
-          </td>
-          
-          <td>
-            <para style="terp_default_Right_9">
-                [[ formatLang(order_line.product_qty )]]
-                
-            </para>
-          </td>
+          <td><para style="terp_default_9"><seq/></para></td>
+          <td><para style="terp_default_9">[[ order_line.name ]]</para></td>
+          <td><para style="terp_default_Right_9">[[ formatLang(order_line.product_qty )]]</para> </td>
         </tr>
       </blockTable>
     </section>
-    <para style="terp_default_9">
-      <font color="white"> </font>
-    </para>
+    <para style="terp_default_9"><font color="white"> </font> </para>
     <para style="terp_default_9">[[ format(order.notes or '') ]]</para>
-    <para style="terp_default_9">
-      <font color="white"> </font>
-    </para>
+    <para style="terp_default_9"><font color="white"> </font>  </para>
     <para style="terp_default_9">Regards,</para>
-    <para style="terp_default_9">
-      <font color="white"> </font>
-    </para>
-    <para style="Space bet user and signature">
-      <font color="white"> </font>
-    </para>
+    <para style="terp_default_9"><font color="white"> </font> </para>
+    <para style="Space bet user and signature"><font color="white"> </font></para>
     <para style="terp_default_9">[[ user.signature or '' ]]</para>
   </story>
 </document>

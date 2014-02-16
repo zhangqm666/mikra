@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+    <report id="stock.report_picking_list" model="stock.picking" name="stock.picking.list" string="Picking Slip" rml="mikra_co/report/picking.rml"/>
+    <report id="stock.report_picking_list_in" model="stock.picking.in" name="stock.picking.list.in" string="Receipt Slip" rml="mikra_co/report/picking.rml"/>
+    <report id="stock.report_picking_list_out" model="stock.picking.out" name="stock.picking.list.out" string="Delivery Slip" rml="mikra_co/report/picking.rml"/>
+       
     <!--
     <record id="view_stock_picking_out_line_sort_inherit" model="ir.ui.view" >
 			<field name="name">view.stock.picking.out.line.sort.inherit</field>

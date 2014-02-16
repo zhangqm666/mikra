@@ -29,3 +29,4 @@ import account_print_invoice
 import sale_order
 import shipping
 import request_quotation
+import picking

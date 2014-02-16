@@ -31,11 +31,28 @@ class request_quotation(report_sxw.rml_parse):
             'time': time,
             'user': self.pool.get('res.users').browse(cr, uid, uid, context),
             'sort_by_name':self._sort_by_name,
+            'sortiraj':self._sortiraj
         })
         
     def _sort_by_name(self, theList):
         theList.sort(key=lambda x: x.name, reverse=False)
-        return theList    
+        return theList  
+    
+    def _sortiraj(self, theList, order_by=None):
+        
+        if not order_by or order_by == 'def':
+            return theList
+        
+        if order_by == 'name_az':
+            theList.sort(key=lambda x: x.name, reverse=False)
+        elif order_by == "name_za":
+            theList.sort(key=lambda x: x.name, reverse=True)
+        elif order_by == 'seq':
+            # TODO provjeri jel postoje seqvence.. kaj ako ih nema? 
+            theList.sort(key=lambda x: x.sequence, reverse=True)
+            pass
+        
+        return theList  
         
 report_sxw.report_sxw('report.mikra.request.quotation',
                       'purchase.order',
