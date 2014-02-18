@@ -155,7 +155,7 @@
           <para style="terp_default_8">Interni broj     : [[ o.number or '' ]]</para>
           <para style="terp_default_8">Referenca : [[ o.origin or '' ]]</para>
           <para style="terp_default_8">Narudžba br.: [[ o.name or '' ]]</para>
-          
+          <para style="terp_default_8">Incoterm : [[ o.incoterm.code or removeParentNode('para') ]]</para>
           
         </td>
 
@@ -168,7 +168,7 @@
      <para> <seqReset/> </para>
     <blockTable colWidths="20,202,87,71,57,42,71" style="Table7">
       <tr>
-      	<td> <para style="terp_tblheader_Details">rb</para></td>
+      	<td> <para style="terp_tblheader_Details">RB</para></td>
         <td> <para style="terp_tblheader_Details">Opis</para></td>
         <td> <para style="terp_tblheader_Details_Centre">Porez</para> </td>
         <td> <para style="terp_tblheader_Details_Centre">Kol.</para>  </td>
