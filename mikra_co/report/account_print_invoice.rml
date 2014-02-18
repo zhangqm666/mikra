@@ -178,7 +178,7 @@
       </tr>
     </blockTable>
     <section>
-      <para style="terp_default_2">[[ repeatIn(o.invoice_line,'l') ]]</para>
+      <para style="terp_default_2">[[ repeatIn(sortiraj(o.invoice_line,o.sort_print),'l') ]]</para>
       <blockTable colWidths="20,202.0,88.0,71.0,57.0,42.0,71.0" style="Table8">
         <tr>
         	<td><para style="terp_default_9"><seq/></para></td>
